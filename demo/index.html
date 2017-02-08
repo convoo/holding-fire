@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>holding-fire demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../holding-fire.html">
+    <link rel="import" href="../../polymerfire/firebase-app.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic holding-fire demo</h3>
+      <demo-snippet>
+        <template>
+        <firebase-app
+            name="holdingdemo"
+            api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+            auth-domain="convoo-login-demo.firebaseapp.com"
+            database-url="https://convoo-login-demo.firebaseio.com">
+        </firebase-app>
+        <holding-fire
+            app-name="holdingdemo"
+            path="/subscribers"
+            class="custom"
+            logo="images/logo.png"
+            text="Website coming soon! Subscribe to find out when we launch!"
+            email="hello@convoo.me"
+            thanks="Thank you for subscribing! Follow us on Twitter for updates."
+            twitter = "@convoo"
+        ></holding-fire>
+        </template>
+      </demo-snippet>
+    </div>
+    <style>
+        .code.demo-snippet, iron-icon.paper-icon-button {
+        display: none !important;
+        opacity: 0;
+    }
+    </style>
+    <style is="custom-style">
+    holding-fire.custom{
+        --holding-fire-background-image: url(images/background.jpg);
+        --holding-fire-background-color: #000;
+        --holding-fire-text-color: #FFF;
+        --holding-fire-button-color: #60b559;
+        --holding-fire-button-text-color: #FFF;
+        --holding-fire-email-color: #FFF;
+        --holding-fire-logo-width: 300px;
+        --holding-fire-email-height: 80px;
+        --holding-fire-overlay-color: #000;
+        --holding-fire-overlay-opacity: 0.6;
+        --holding-fire-shadow-color: #000;
+    }
+    </style>
+  </body>
+</html>

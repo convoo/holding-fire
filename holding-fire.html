@@ -1,0 +1,255 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymerfire/firebase-document.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-image/iron-image.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<!--
+`holding-fire`
+
+Example:
+```
+<firebase-app
+    name="demo"
+    api-key="API_KEY"
+    auth-domain="AUTH_DOMAIN"
+    database-url="DATABASE_URL"
+></firebase-app>
+<holding-fire 
+    app-name="demo"
+    path="users/"
+    logo="images/logo.png"
+    text="Website coming soon! Subscribe to find out when we launch!"
+    email="hello@convoo.me"
+></holding-fire>
+```
+
+### Styling
+
+Style the element with CSS as you would a normal DOM element. 
+
+The following custom properties and mixins are available for styling:
+
+| Custom property | Description | Default |
+| --- | --- | --- |
+| `--holding-fire-background-image` | The background image | `url(images/background.jpg)` |
+| `--holding-fire-background-color` | The background color of the element | `black` |
+| `--holding-fire-text-color` | The color for the text  | `white` |
+| `--holding-fire-button-color` | The color for the subscribe button | `#60b559` |
+| `--holding-fire-button-text-color` | The color for button text | `white` |
+| `--holding-fire-email-color` | The text color for the email | `white` |
+| `--holding-fire-logo-width` | The logo width | `300px` |
+| `--holding-fire-logo-height` | The logo height | `80px` |
+| `--holding-fire-overlay-color` | The color of the overlay | `black` |
+| `--holding-fire-overlay-opacity` | The opacity of the overlay | `0.6` |
+| `--holding-fire-shadow-color` | The color of the box shaddow | `black` |
+
+@demo demo/index.html 
+-->
+
+<dom-module id="holding-fire">
+  <template>
+      
+    <style>
+    :host {
+        display: block;
+        background-color: var(--holding-fire-background-color, black);
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        top: 0px;
+        background: var(--holding-fire-background-image, url(images/background.jpg)) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        -webkit-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
+        -moz-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
+        box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
+        @apply(--layout-horizontal);
+        @apply(--layout-center);    
+    }
+    .overlay{
+        background-color: var(--holding-fire-background-color, black);
+        opacity: var(--holding-fire-overlay-opacity, 0.6);
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        top: 0px;
+    }
+    .pre-register{
+        margin: auto;
+        position: relative;
+        top:100px;
+        width: 90%;
+        height: 250px;
+        opacity: 1;
+        text-align: center;
+    }
+    h2{
+        color: var(--holding-fire-text-color, white);
+        font-size: 20px;
+        font-weight: 400;
+    }
+    p{
+        color: var(--holding-fire-email-color, white);
+        font-size: 12px;
+        padding-top: 10px;
+    }
+    paper-button.custom {
+        background-color: var(--holding-fire-button-color, #60b559);
+        color: var(--holding-fire-button-text-color, white);
+        width: 100%;
+        height: 40px;
+    }
+    paper-button.twitter {
+        background-color:  #58aae8;
+        color: white;
+        width: 100%;
+        height: 40px;
+        font-weight: bold;
+        font-size: 14px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-transform: capitalize;
+    }
+    paper-input.custom {
+        --paper-input-container-color: var(--holding-fire-text-color, white);
+        --paper-input-container-focus-color: var(--holding-fire-text-color, white);
+        --paper-input-container-invalid-color: var(--holding-fire-text-color, white);
+        --paper-input-container-input-color: var(--holding-fire-text-color, white);
+        padding-left: 7px;
+        text-align: left;
+    }
+    form{
+        width: 300px;
+        margin: auto;
+    }
+
+    </style>
+
+    <firebase-document
+        id="doc"
+        app-name="[[appName]]"
+        path="[[path]]"
+        data="{{data}}">
+    </firebase-document>
+
+
+    <div class="overlay"></div>
+    <div class="pre-register">
+        <iron-image src="[[logo]]" style="width:300px; height:70px;" sizing="contain" alt="convoo"></iron-image></br>
+        <template is="dom-if" if="{{!subscribed}}"> 
+            <h2>[[text]]</h2>
+            <form>
+                <paper-input label="Email:" class="custom" id="email"></paper-input></br>            
+                <paper-button toggles raised class="custom" on-tap="subscribe">Subscribe</paper-button>
+            </form>
+        </template>
+
+        <template is="dom-if" if="{{subscribed}}"> 
+            <h2>[[thanks]]</h2>
+            <form>
+                <template is="dom-if" if="{{twitter}}">        
+                    <paper-button toggles raised class="twitter" on-tap="_twitter">
+                        <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
+                        <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
+                        </svg>Follow us on Twitter
+                    </paper-button>
+                </template>
+            </form>
+        </template>
+
+        <p>[[email]]</p> 
+    </div>
+</template>
+
+  <script>
+    Polymer({
+    is: 'holding-fire',
+    properties: {
+        /**
+        * Link to the image file for the logo
+        *
+        * @type {String}
+        */
+        logo: {
+          type: String,
+        },
+        /**
+        * Text to be displayed below the logo
+        *
+        * @type {String}
+        */
+        text: {
+          type: String,
+        },
+        /**
+        * Text to be displayed to thnk the user
+        *
+        * @type {String}
+        */
+        thanks: {
+          type: String,
+        },
+        /**
+        * Email to be displayed below the subscription form 
+        *
+        * @type {String}
+        */
+        email: {
+          type: String,
+        },
+        /**
+        * The name of the firebase app
+        *
+        * @type {String}
+        */
+        appName: {
+          type: String,
+        },
+        /**
+        * The storage path for the subscription emails 
+        *
+        * @type {String}
+        */
+        path: {
+          type: String,
+        },
+        /**
+        * Indicates if the user has subscribed 
+        *
+        * @type {Boolean}
+        */
+        subscribed: {
+            type: Boolean,
+            value: false,
+        },
+
+
+
+      },
+
+    subscribe: function(){
+        var date = new Date();
+        var epoch = date.getTime();
+        if(this._validateEmail(this.$$("#email").value)){
+            this.$.doc.ref.push({email: this.$$("#email").value, date: epoch});  
+            this.subscribed = true
+        }
+    },
+
+    _validateEmail: function(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    },
+
+    _twitter: function(){
+        window.location = "http://www.twitter.com/[[twitter]]";
+    }
+
+    });
+  </script>
+</dom-module>
