@@ -52,8 +52,19 @@ The following custom properties and mixins are available for styling:
       
     <style>
     :host {
-        display: block;
         background-color: var(--holding-fire-background-color, black);
+        display: block;
+        @apply(--layout-horizontal);
+        @apply(--layout-center); 
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        top: 0px;
+    }
+
+
+    .background{     
         position: absolute;
         left: 0px;
         bottom: 0px;
@@ -64,12 +75,24 @@ The following custom properties and mixins are available for styling:
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        -webkit-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
-        -moz-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
-        box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
-        @apply(--layout-horizontal);
-        @apply(--layout-center);    
+        animation-name: dropHeader;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-duration: 10s;
+        animation-fill-mode: forwards;
     }
+
+    
+    @keyframes dropHeader {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.09);
+        }
+    }
+
+
     .overlay{
         background-color: var(--holding-fire-background-color, black);
         opacity: var(--holding-fire-overlay-opacity, 0.6);
@@ -78,6 +101,10 @@ The following custom properties and mixins are available for styling:
         bottom: 0px;
         right: 0px;
         top: 0px;
+        z-index: 200;
+        -webkit-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
+        -moz-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
+        box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
     }
     .pre-register{
         margin: auto;
@@ -87,22 +114,26 @@ The following custom properties and mixins are available for styling:
         height: 250px;
         opacity: 1;
         text-align: center;
+        z-index: 400;
     }
     h2{
         color: var(--holding-fire-text-color, white);
         font-size: 20px;
         font-weight: 400;
+        z-index: 400;
     }
     p{
         color: var(--holding-fire-email-color, white);
         font-size: 12px;
         padding-top: 10px;
+        z-index: 400;
     }
     paper-button.custom {
         background-color: var(--holding-fire-button-color, #60b559);
         color: var(--holding-fire-button-text-color, white);
         width: 100%;
         height: 40px;
+        z-index: 400;
     }
     paper-button.twitter {
         background-color:  #58aae8;
@@ -114,6 +145,7 @@ The following custom properties and mixins are available for styling:
         margin-top: 20px;
         margin-bottom: 20px;
         text-transform: capitalize;
+        z-index: 400;
     }
     paper-input.custom {
         --paper-input-container-color: var(--holding-fire-text-color, white);
@@ -122,10 +154,12 @@ The following custom properties and mixins are available for styling:
         --paper-input-container-input-color: var(--holding-fire-text-color, white);
         padding-left: 7px;
         text-align: left;
+        z-index: 400;
     }
     form{
         width: 300px;
         margin: auto;
+        z-index: 400;
     }
 
     </style>
@@ -137,7 +171,7 @@ The following custom properties and mixins are available for styling:
         data="{{data}}">
     </firebase-document>
 
-
+    <div class="background"></div>
     <div class="overlay"></div>
     <div class="pre-register">
         <iron-image src="[[logo]]" style="width:300px; height:70px;" sizing="contain" alt="convoo"></iron-image></br>
