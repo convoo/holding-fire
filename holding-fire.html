@@ -171,6 +171,25 @@ The following custom properties and mixins are available for styling:
         margin-bottom: 15px;
     }
 
+    .fadeup{
+        animation-name: fade;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-duration: 0.8s;
+        animation-fill-mode: forwards;
+    }
+        @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+
+
+
     </style>
 
     <firebase-document
@@ -184,7 +203,7 @@ The following custom properties and mixins are available for styling:
     <div class="overlay"></div>
     <div class="pre-register">
         <iron-image src="[[logo]]" class="logo" sizing="contain" alt="convoo"></iron-image></br>
-        <template is="dom-if" if="{{!subscribed}}"> 
+        <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
             <h2>[[text]]</h2>
             <form>
                 <paper-input label="Email:" class="custom" id="email"></paper-input></br>            
@@ -193,16 +212,18 @@ The following custom properties and mixins are available for styling:
         </template>
 
         <template is="dom-if" if="{{subscribed}}"> 
-            <h2>[[thanks]]</h2>
-            <form>
-                <template is="dom-if" if="{{twitter}}">        
-                    <paper-button toggles raised class="twitter" on-tap="_twitter">
-                        <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
-                        <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
-                        </svg>Follow us on Twitter
-                    </paper-button>
-                </template>
-            </form>
+            <div hidden="{{!subscribed}}" class="fadeup">
+                <h2>[[thanks]]</h2>
+                <form>
+                    <template is="dom-if" if="{{twitter}}">        
+                        <paper-button toggles raised class="twitter" on-tap="_twitter">
+                            <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
+                            <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
+                            </svg>Follow us on Twitter
+                        </paper-button>
+                    </template>
+                </form>
+            </div>
         </template>
 
         <p>[[email]]</p> 
@@ -230,7 +251,7 @@ The following custom properties and mixins are available for styling:
           type: String,
         },
         /**
-        * Text to be displayed to thnk the user
+        * Text to be displayed to thank the user
         *
         * @type {String}
         */
@@ -273,6 +294,7 @@ The following custom properties and mixins are available for styling:
 
 
 
+
       },
 
     subscribe: function(){
@@ -280,7 +302,7 @@ The following custom properties and mixins are available for styling:
         var epoch = date.getTime();
         if(this._validateEmail(this.$$("#email").value)){
             this.$.doc.ref.push({email: this.$$("#email").value, date: epoch});  
-            this.subscribed = true
+            this.subscribed = true;
         }
     },
 
