@@ -348,8 +348,6 @@ The following custom properties and mixins are available for styling:
     subscribe: function(){
         var date = new Date();
         var epoch = date.getTime();
-        var referer = this.$.document.referrer;
-        console.log(referer);
         if(this._validateEmail(this.$$("#email").value)){
             this.$.doc.ref.push({email: this.$$("#email").value, date: epoch});  
             this.subscribed = true;
