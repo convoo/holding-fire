@@ -88,7 +88,7 @@ The following custom properties and mixins are available for styling:
             transform: scale(1);
         }
         100% {
-            transform: scale(1.09);
+            transform: scale(1.1);
         }
     }
 
@@ -104,21 +104,9 @@ The following custom properties and mixins are available for styling:
         -webkit-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
         -moz-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
         box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
-        animation-name: fade;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-        animation-duration: 3s;
-        animation-fill-mode: forwards;
+        opacity: 0.55
     }
 
-    @keyframes fade {
-        0% {
-            opacity: 0.8
-        }
-        100% {
-            opacity: var(--holding-fire-overlay-opacity, 0.6);
-        }
-    }
 
     .pre-register{
         margin: auto;
@@ -135,12 +123,14 @@ The following custom properties and mixins are available for styling:
         font-size: 20px;
         font-weight: 400;
         z-index: 400;
+        -webkit-font-smoothing: antialiased;
     }
     p{
         color: var(--holding-fire-email-color, white);
         font-size: 12px;
         padding-top: 10px;
         z-index: 400;
+        -webkit-font-smoothing: antialiased;
     }
     paper-button.custom {
         background-color: var(--holding-fire-button-color, #60b559);
@@ -175,6 +165,11 @@ The following custom properties and mixins are available for styling:
         margin: auto;
         z-index: 400;
     }
+    .logo{
+        width: var(--holding-fire-logo-width, 300px); 
+        height:var(--holding-fire-logo-height, 70px);
+        margin-bottom: 15px;
+    }
 
     </style>
 
@@ -188,7 +183,7 @@ The following custom properties and mixins are available for styling:
     <div class="background"></div>
     <div class="overlay"></div>
     <div class="pre-register">
-        <iron-image src="[[logo]]" style="width:300px; height:70px;" sizing="contain" alt="convoo"></iron-image></br>
+        <iron-image src="[[logo]]" class="logo" sizing="contain" alt="convoo"></iron-image></br>
         <template is="dom-if" if="{{!subscribed}}"> 
             <h2>[[text]]</h2>
             <form>
