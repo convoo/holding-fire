@@ -78,7 +78,7 @@ The following custom properties and mixins are available for styling:
         animation-name: zoom;
         animation-iteration-count: 1;
         animation-timing-function: ease-in-out;
-        animation-duration: 10s;
+        animation-duration: 9s;
         animation-fill-mode: forwards;
     }
 
@@ -118,12 +118,25 @@ The following custom properties and mixins are available for styling:
         text-align: center;
         z-index: 400;
     }
-    h2{
+    .subtext{
         color: var(--holding-fire-text-color, white);
         font-size: 20px;
         font-weight: 400;
         z-index: 400;
+        opacity: 0;
         -webkit-font-smoothing: antialiased;
+        animation-name: fade;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.8s;
+    }
+    .thankstext{
+        color: var(--holding-fire-text-color, white);
+        font-size: 20px;
+        font-weight: 400;
+        z-index: 400;
     }
     p{
         color: var(--holding-fire-email-color, white);
@@ -131,6 +144,13 @@ The following custom properties and mixins are available for styling:
         padding-top: 10px;
         z-index: 400;
         -webkit-font-smoothing: antialiased;
+        opacity: 0;
+        animation-name: fade;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        animation-delay: 6s;
     }
     paper-button.custom {
         background-color: var(--holding-fire-button-color, #60b559);
@@ -160,10 +180,29 @@ The following custom properties and mixins are available for styling:
         text-align: left;
         z-index: 400;
     }
-    form{
+    .subform{
         width: 300px;
         margin: auto;
         z-index: 400;
+        opacity: 0;
+        animation-name: fade;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-delay: 2.7s;
+    }
+    .twitterform{
+        width: 300px;
+        margin: auto;
+        z-index: 400;
+        opacity: 0;
+        animation-name: fade;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-delay: 1.2s;
     }
     .logo{
         width: var(--holding-fire-logo-width, 300px); 
@@ -204,8 +243,8 @@ The following custom properties and mixins are available for styling:
     <div class="pre-register">
         <iron-image src="[[logo]]" class="logo" sizing="contain" alt="convoo"></iron-image></br>
         <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
-            <h2>[[text]]</h2>
-            <form>
+            <h2 class="subtext">[[text]]</h2>
+            <form class="subform">
                 <paper-input label="Email:" class="custom" id="email"></paper-input></br>            
                 <paper-button toggles raised class="custom" on-tap="subscribe">Subscribe</paper-button>
             </form>
@@ -213,8 +252,8 @@ The following custom properties and mixins are available for styling:
 
         <template is="dom-if" if="{{subscribed}}"> 
             <div hidden="{{!subscribed}}" class="fadeup">
-                <h2>[[thanks]]</h2>
-                <form>
+                <h2 class="thankstext">[[thanks]]</h2>
+                <form class="twitterform">
                     <template is="dom-if" if="{{twitter}}">        
                         <paper-button toggles raised class="twitter" on-tap="_twitter">
                             <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
