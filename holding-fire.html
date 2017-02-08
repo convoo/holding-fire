@@ -75,7 +75,7 @@ The following custom properties and mixins are available for styling:
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
-        animation-name: dropHeader;
+        animation-name: zoom;
         animation-iteration-count: 1;
         animation-timing-function: ease-in-out;
         animation-duration: 10s;
@@ -83,7 +83,7 @@ The following custom properties and mixins are available for styling:
     }
 
     
-    @keyframes dropHeader {
+    @keyframes zoom {
         0% {
             transform: scale(1);
         }
@@ -95,7 +95,6 @@ The following custom properties and mixins are available for styling:
 
     .overlay{
         background-color: var(--holding-fire-background-color, black);
-        opacity: var(--holding-fire-overlay-opacity, 0.6);
         position: absolute;
         left: 0px;
         bottom: 0px;
@@ -105,7 +104,22 @@ The following custom properties and mixins are available for styling:
         -webkit-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
         -moz-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
         box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
+        animation-name: fade;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
     }
+
+    @keyframes fade {
+        0% {
+            opacity: 0.8
+        }
+        100% {
+            opacity: var(--holding-fire-overlay-opacity, 0.6);
+        }
+    }
+
     .pre-register{
         margin: auto;
         position: relative;
