@@ -209,6 +209,14 @@ The following custom properties and mixins are available for styling:
         height:var(--holding-fire-logo-height, 70px);
         margin-bottom: 15px;
     }
+    .noselect {
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
+    }
 
     .fadeup{
         animation-name: fade;
@@ -229,6 +237,7 @@ The following custom properties and mixins are available for styling:
 
 
 
+
     </style>
 
     <firebase-document
@@ -243,7 +252,7 @@ The following custom properties and mixins are available for styling:
     <div class="pre-register">
         <iron-image src="[[logo]]" class="logo" sizing="contain" alt="convoo"></iron-image></br>
         <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
-            <h2 class="subtext">[[text]]</h2>
+            <h2 class="subtext noselect">[[text]]</h2>
             <form class="subform">
                 <paper-input label="Email:" class="custom" id="email"></paper-input></br>            
                 <paper-button toggles raised class="custom" on-tap="subscribe">Subscribe</paper-button>
@@ -252,7 +261,7 @@ The following custom properties and mixins are available for styling:
 
         <template is="dom-if" if="{{subscribed}}"> 
             <div hidden="{{!subscribed}}" class="fadeup">
-                <h2 class="thankstext">[[thanks]]</h2>
+                <h2 class="thankstext noselect">[[thanks]]</h2>
                 <form class="twitterform">
                     <template is="dom-if" if="{{twitter}}">        
                         <paper-button toggles raised class="twitter" on-tap="_twitter">
@@ -339,6 +348,8 @@ The following custom properties and mixins are available for styling:
     subscribe: function(){
         var date = new Date();
         var epoch = date.getTime();
+        var referer = this.$.document.referrer;
+        console.log(referer);
         if(this._validateEmail(this.$$("#email").value)){
             this.$.doc.ref.push({email: this.$$("#email").value, date: epoch});  
             this.subscribed = true;
