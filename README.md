@@ -41,17 +41,20 @@ The following custom properties and mixins are available for styling:
 
 | Custom property | Description | Default |
 | --- | --- | --- |
-| `--holding-fire-background-image` | The background image | `url(images/background.jpg)` |
-| `--holding-fire-background-color` | The background color of the element | `black` |
-| `--holding-fire-text-color` | The color for the text  | `white` |
-| `--holding-fire-button-color` | The color for the subscribe button | `#60b559` |
-| `--holding-fire-button-text-color` | The color for button text | `white` |
-| `--holding-fire-email-color` | The text color for the email | `white` |
-| `--holding-fire-logo-width` | The logo width | `300px` |
-| `--holding-fire-logo-height` | The logo height | `80px` |
-| `--holding-fire-overlay-color` | The color of the overlay | `black` |
-| `--holding-fire-overlay-opacity` | The opacity of the overlay | `0.6` |
-| `--holding-fire-shadow-color` | The color of the box shaddow | `black` |
+| `--holding-fire-input-coloe` | The color for the input | `white` |
+| `--holding-fire-background` | Mixin for the background | `{}` |
+| `--holding-fire-overlay` | Mixin for the overlay  | `{}` |
+| `--holding-fire-container` | Mixin ofr the container | `{}` |
+| `--holding-fire-logo` | Mixin for the logo | `{}` |
+| `--holding-fire-email-text` | Mixin for the email text | `{}` |
+| `--holding-fire-email-text` | Mixin for the email text | `{}` |
+| `--holding-fire-welcome-text` | Mixin for the welcome text | `{}` |
+| `--holding-fire-input` | Mixin for the input | `{}` |
+| `--holding-fire-subscribe-button` | Mixin for the subscribe button | `{}` |
+| `--holding-fire-twitter-button` | Mixin for the twitter button | `{}` |
+| `---holding-fire-subscribe-container` | Mixin for the subscribe container| `{}` |
+| `--holding-fire-twitter-container` | Mixin for the Twitter container | `{}` |
+| `--holding-fire-show-thankyou` | Mixin for revealing the thank you container | `{}` |
 
 ## Dependencies
 

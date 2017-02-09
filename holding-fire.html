@@ -32,17 +32,20 @@ The following custom properties and mixins are available for styling:
 
 | Custom property | Description | Default |
 | --- | --- | --- |
-| `--holding-fire-background-image` | The background image | `url(images/background.jpg)` |
-| `--holding-fire-background-color` | The background color of the element | `black` |
-| `--holding-fire-text-color` | The color for the text  | `white` |
-| `--holding-fire-button-color` | The color for the subscribe button | `#60b559` |
-| `--holding-fire-button-text-color` | The color for button text | `white` |
-| `--holding-fire-email-color` | The text color for the email | `white` |
-| `--holding-fire-logo-width` | The logo width | `300px` |
-| `--holding-fire-logo-height` | The logo height | `80px` |
-| `--holding-fire-overlay-color` | The color of the overlay | `black` |
-| `--holding-fire-overlay-opacity` | The opacity of the overlay | `0.6` |
-| `--holding-fire-shadow-color` | The color of the box shaddow | `black` |
+| `--holding-fire-input-color` | The color for the input | `white` |
+| `--holding-fire-background` | Mixin for the background | `{}` |
+| `--holding-fire-overlay` | Mixin for the overlay  | `{}` |
+| `--holding-fire-container` | Mixin ofr the container | `{}` |
+| `--holding-fire-logo` | Mixin for the logo | `{}` |
+| `--holding-fire-email-text` | Mixin for the email text | `{}` |
+| `--holding-fire-email-text` | Mixin for the email text | `{}` |
+| `--holding-fire-welcome-text` | Mixin for the welcome text | `{}` |
+| `--holding-fire-input` | Mixin for the input | `{}` |
+| `--holding-fire-subscribe-button` | Mixin for the subscribe button | `{}` |
+| `--holding-fire-twitter-button` | Mixin for the twitter button | `{}` |
+| `---holding-fire-subscribe-container` | Mixin for the subscribe container| `{}` |
+| `--holding-fire-twitter-container` | Mixin for the Twitter container | `{}` |
+| `--holding-fire-show-thankyou` | Mixin for revealing the thank you container | `{}` |
 
 @demo demo/index.html 
 -->
@@ -52,7 +55,6 @@ The following custom properties and mixins are available for styling:
       
     <style>
     :host {
-        background-color: var(--holding-fire-background-color, black);
         display: block;
         @apply(--layout-horizontal);
         @apply(--layout-center); 
@@ -62,27 +64,85 @@ The following custom properties and mixins are available for styling:
         right: 0px;
         top: 0px;
     }
-
-
     .background{     
         position: absolute;
         left: 0px;
         bottom: 0px;
         right: 0px;
         top: 0px;
-        background: var(--holding-fire-background-image, url(images/background.jpg)) no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        animation-name: zoom;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-        animation-duration: 9s;
-        animation-fill-mode: forwards;
+        @apply(--holding-fire-background);
+    }
+    .overlay{
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        top: 0px;
+        z-index: 200;
+        @apply(--holding-fire-overlay);
+    }
+    .container{
+        z-index: 400;
+        @apply(--holding-fire-container); 
+    }
+    .welcome-text{
+        z-index: 400;
+        @apply(--holding-fire-welcome-text); 
+    }
+    .thankyou-text{
+        z-index: 400;
+        @apply(--holding-fire-thankyou-text); 
+    }
+    .email a{
+        @apply(--holding-fire-email-text); 
     }
 
-    
+    paper-button.subscribe {
+        z-index: 400;
+        @apply(--holding-fire-subscribe-button); 
+    }
+    paper-button.twitter {
+        z-index: 400;
+        @apply(--holding-fire-twitter-button); 
+    }
+    paper-input.custom {
+        --paper-input-container-color: var(--holding-fire-input-color, white);
+        --paper-input-container-focus-color: var(--holding-fire-input-color, white);
+        --paper-input-container-invalid-color: var(--holding-fire-input-color, white);
+        --paper-input-container-input-color: var(--holding-fire-input-color, white);
+        z-index: 400;
+        @apply(--holding-fire-input); 
+    }
+    .subscribe-form{
+        z-index: 400;
+        @apply(--holding-fire-subscribe-container); 
+    }
+    .twitter-form{
+        z-index: 400;
+        @apply(--holding-fire-twitter-container); 
+    }
+    .logo{
+        @apply(--holding-fire-logo); 
+    }
+    .show-thanks{
+        @apply(--holding-fire-show-thankyou); 
+    }
+    .cant-select {
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
+    }
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
     @keyframes zoom {
         0% {
             transform: scale(1);
@@ -91,153 +151,6 @@ The following custom properties and mixins are available for styling:
             transform: scale(1.1);
         }
     }
-
-
-    .overlay{
-        background-color: var(--holding-fire-background-color, black);
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
-        right: 0px;
-        top: 0px;
-        z-index: 200;
-        -webkit-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
-        -moz-box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
-        box-shadow: inset 0px 0px 153px 37px var(--holding-fire-shadow-color, black);
-        opacity: 0.55
-    }
-
-
-    .pre-register{
-        margin: auto;
-        position: relative;
-        top:100px;
-        width: 90%;
-        height: 250px;
-        opacity: 1;
-        text-align: center;
-        z-index: 400;
-    }
-    .subtext{
-        color: var(--holding-fire-text-color, white);
-        font-size: 20px;
-        font-weight: 400;
-        z-index: 400;
-        opacity: 0;
-        -webkit-font-smoothing: antialiased;
-        animation-name: fade;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-delay: 0.8s;
-    }
-    .thankstext{
-        color: var(--holding-fire-text-color, white);
-        font-size: 20px;
-        font-weight: 400;
-        z-index: 400;
-    }
-    p{
-        color: var(--holding-fire-email-color, white);
-        font-size: 12px;
-        padding-top: 10px;
-        z-index: 400;
-        -webkit-font-smoothing: antialiased;
-        opacity: 0;
-        animation-name: fade;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-        animation-duration: 3s;
-        animation-fill-mode: forwards;
-        animation-delay: 6s;
-    }
-    paper-button.custom {
-        background-color: var(--holding-fire-button-color, #60b559);
-        color: var(--holding-fire-button-text-color, white);
-        width: 100%;
-        height: 40px;
-        z-index: 400;
-    }
-    paper-button.twitter {
-        background-color:  #58aae8;
-        color: white;
-        width: 100%;
-        height: 40px;
-        font-weight: bold;
-        font-size: 14px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        text-transform: capitalize;
-        z-index: 400;
-    }
-    paper-input.custom {
-        --paper-input-container-color: var(--holding-fire-text-color, white);
-        --paper-input-container-focus-color: var(--holding-fire-text-color, white);
-        --paper-input-container-invalid-color: var(--holding-fire-text-color, white);
-        --paper-input-container-input-color: var(--holding-fire-text-color, white);
-        padding-left: 7px;
-        text-align: left;
-        z-index: 400;
-    }
-    .subform{
-        width: 300px;
-        margin: auto;
-        z-index: 400;
-        opacity: 0;
-        animation-name: fade;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-        animation-duration: 2s;
-        animation-fill-mode: forwards;
-        animation-delay: 2.7s;
-    }
-    .twitterform{
-        width: 300px;
-        margin: auto;
-        z-index: 400;
-        opacity: 0;
-        animation-name: fade;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-delay: 1.2s;
-    }
-    .logo{
-        width: var(--holding-fire-logo-width, 300px); 
-        height:var(--holding-fire-logo-height, 70px);
-        margin-bottom: 15px;
-    }
-    .noselect {
-        -webkit-touch-callout: none; 
-        -webkit-user-select: none; 
-        -khtml-user-select: none; 
-        -moz-user-select: none; 
-        -ms-user-select: none; 
-        user-select: none; 
-    }
-
-    .fadeup{
-        animation-name: fade;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-in-out;
-        animation-duration: 0.8s;
-        animation-fill-mode: forwards;
-    }
-        @keyframes fade {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-
-
-
-
-
     </style>
 
     <firebase-document
@@ -249,20 +162,20 @@ The following custom properties and mixins are available for styling:
 
     <div class="background"></div>
     <div class="overlay"></div>
-    <div class="pre-register">
-        <iron-image src="[[logo]]" class="logo" sizing="contain" alt="convoo"></iron-image></br>
+    <div class="container">
+        <iron-image src="[[logo]]" class="logo" sizing="contain" alt="[[alt]]]"></iron-image></br>
         <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
-            <h2 class="subtext noselect">[[text]]</h2>
-            <form class="subform">
+            <h2 class="welcome-text cant-select">[[text]]</h2>
+            <form class="subscribe-form">
                 <paper-input label="Email:" class="custom" id="email"></paper-input></br>            
-                <paper-button toggles raised class="custom" on-tap="subscribe">Subscribe</paper-button>
+                <paper-button toggles raised class="subscribe" on-tap="subscribe">Subscribe</paper-button>
             </form>
         </template>
 
         <template is="dom-if" if="{{subscribed}}"> 
-            <div hidden="{{!subscribed}}" class="fadeup">
-                <h2 class="thankstext noselect">[[thanks]]</h2>
-                <form class="twitterform">
+            <div hidden="{{!subscribed}}" class="show-thanks">
+                <h2 class="thankyou-text cant-select">[[thanks]]</h2>
+                <form class="twitter-form">
                     <template is="dom-if" if="{{twitter}}">        
                         <paper-button toggles raised class="twitter" on-tap="_twitter">
                             <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
@@ -273,8 +186,7 @@ The following custom properties and mixins are available for styling:
                 </form>
             </div>
         </template>
-
-        <p>[[email]]</p> 
+        <p class="email"><a href="mailto:[[email]]">[[email]]</a></p>
     </div>
 </template>
 
@@ -339,10 +251,14 @@ The following custom properties and mixins are available for styling:
             type: Boolean,
             value: false,
         },
-
-
-
-
+        /**
+        * Alt text for the logo
+        *
+        * @type {String}
+        */
+        alt: {
+            type: String,
+        },
       },
 
     subscribe: function(){

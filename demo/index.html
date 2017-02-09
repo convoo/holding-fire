@@ -31,6 +31,7 @@
             app-name="holdingdemo"
             path="/subscribers"
             class="custom"
+            alt="Convoo"
             logo="images/logo.png"
             text="Website coming soon! Subscribe to find out when we launch!"
             email="hello@convoo.me"
@@ -48,17 +49,127 @@
     </style>
     <style is="custom-style">
     holding-fire.custom{
-        --holding-fire-background-image: url(images/background.jpg);
-        --holding-fire-background-color: #000;
-        --holding-fire-text-color: #FFF;
-        --holding-fire-button-color: #60b559;
-        --holding-fire-button-text-color: #FFF;
-        --holding-fire-email-color: #FFF;
-        --holding-fire-logo-width: 300px;
-        --holding-fire-email-height: 80px;
-        --holding-fire-overlay-color: #000;
-        --holding-fire-overlay-opacity: 0.6;
-        --holding-fire-shadow-color: #000;
+        --holding-fire-input-color: #FFF;
+        --holding-fire-background: {
+            background-color: black;
+            background: url(images/background.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            animation-name: zoom;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in-out;
+            animation-duration: 9s;
+            animation-fill-mode: forwards;
+            filter: blur(7px);
+        }
+        --holding-fire-overlay:{
+            background-color: black;
+            -webkit-box-shadow: inset 0px 0px 153px 37px black;
+            -moz-box-shadow: inset 0px 0px 153px 37px black;
+            box-shadow: inset 0px 0px 153px 37px black;
+            opacity: 0.55
+        }
+        --holding-fire-container:{
+            margin: auto;
+            position: relative;
+            top:100px;
+            width: 90%;
+            height: 250px;
+            opacity: 1;
+            text-align: center;
+        }
+        --holding-fire-logo: {       
+            margin-bottom: 15px;
+            width: 300px; 
+            height: 70px;
+        }
+        --holding-fire-welcome-text:{
+            color: white;
+            font-size: 20px;
+            font-weight: 400;
+            opacity: 0;
+            -webkit-font-smoothing: antialiased;
+            animation-name: fade;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in-out;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-delay: 0.8s;
+        }
+        --holding-fire-thankyou-text:{
+            color: white;
+            font-size: 20px;
+            font-weight: 400;
+        }
+        --holding-fire-email-text:{
+            color: var(--holding-fire-email-color, white);
+            font-size: 12px;
+            padding-top: 10px;
+            -webkit-font-smoothing: antialiased;
+            opacity: 0;
+            animation-name: fade;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in-out;
+            animation-duration: 3s;
+            animation-fill-mode: forwards;
+            animation-delay: 6s;
+            text-decoration:none;
+        }
+        --holding-fire-subscribe-button:{
+            background-color: #60b559;
+            color: white;
+            width: 100%;
+            height: 40px;
+        }
+        --holding-fire-twitter-button:{
+            background-color:  #58aae8;
+            color: white;
+            width: 100%;
+            height: 40px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+        --holding-fire-input:{
+            padding-left: 7px;
+            text-align: left;
+            
+        }
+        --holding-fire-subscribe-container:{
+            width: 300px;
+            margin: auto;
+            opacity: 0;
+            animation-name: fade;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in-out;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+            animation-delay: 2.7s;
+        }
+        --holding-fire-twitter-container:{
+            width: 300px;
+            margin: auto;
+            opacity: 0;
+            animation-name: fade;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in-out;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-delay: 1.2s;
+        }
+        --holding-fire-show-thankyou:{
+            animation-name: fade;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in-out;
+            animation-duration: 0.8s;
+            animation-fill-mode: forwards;
+        }
+
+
     }
     </style>
   </body>
