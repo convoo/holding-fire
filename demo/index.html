@@ -32,7 +32,7 @@
             path="/subscribers"
             class="custom"
             alt="Convoo"
-            logo="images/logo.png"
+            logo="images/logo.svg"
             text="Website coming soon! Subscribe to find out when we launch!"
             email="hello@convoo.me"
             thanks="Thank you for subscribing! Follow us on Twitter for updates."
@@ -46,50 +46,44 @@
         display: none !important;
         opacity: 0;
     }
+
     </style>
     <style is="custom-style">
     holding-fire.custom{
-        --holding-fire-input-color: #FFF;
+        --holding-fire-input-color: #a6a6a6;
         --holding-fire-background: {
-            background-color: black;
+            background-color: white;
             background: url(images/background.jpg) no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            animation-name: zoom;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in-out;
-            animation-duration: 9s;
-            animation-fill-mode: forwards;
-            filter: blur(3px);
+            background-color:#fefefe;
+
         }
         --holding-fire-overlay:{
-            background-color: black;
-            -webkit-box-shadow: inset 0px 0px 153px 37px black;
-            -moz-box-shadow: inset 0px 0px 153px 37px black;
-            box-shadow: inset 0px 0px 153px 37px black;
-            opacity: 0.6
+            display:none;
         }
         --holding-fire-container:{
             margin: auto;
             position: relative;
-            top:100px;
+            top:-100px;
             width: 90%;
             height: 250px;
             opacity: 1;
             text-align: center;
         }
         --holding-fire-logo: {       
-            margin-bottom: 15px;
+            margin-bottom: 30px;
             width: 300px; 
             height: 70px;
         }
         --holding-fire-welcome-text:{
-            color: white;
-            font-size: 20px;
+            color: #a6a6a6;
+            font-size: 15px;
             font-weight: 400;
             opacity: 0;
+            padding:30px;
             -webkit-font-smoothing: antialiased;
             animation-name: fade;
             animation-iteration-count: 1;
@@ -99,14 +93,14 @@
             animation-delay: 0.8s;
         }
         --holding-fire-thankyou-text:{
-            color: white;
+            color: #a6a6a6;
             font-size: 20px;
             font-weight: 400;
         }
         --holding-fire-email-text:{
             color: var(--holding-fire-email-color, white);
             font-size: 12px;
-            padding-top: 10px;
+            padding-top: -10px;
             -webkit-font-smoothing: antialiased;
             opacity: 0;
             animation-name: fade;

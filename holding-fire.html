@@ -56,13 +56,14 @@ The following custom properties and mixins are available for styling:
     <style>
     :host {
         display: block;
-        @apply(--layout-horizontal);
-        @apply(--layout-center); 
         position: absolute;
         left: 0px;
         bottom: 0px;
         right: 0px;
         top: 0px;
+        overflow:none 
+        @apply(--layout-horizontal);
+        @apply(--layout-center); 
     }
     .background{     
         position: absolute;
@@ -71,6 +72,7 @@ The following custom properties and mixins are available for styling:
         right: 0px;
         top: 0px;
         @apply(--holding-fire-background);
+        display: none;
     }
     .overlay{
         position: absolute;
@@ -80,6 +82,7 @@ The following custom properties and mixins are available for styling:
         top: 0px;
         z-index: 200;
         @apply(--holding-fire-overlay);
+        display: none;
     }
     .container{
         z-index: 400;
