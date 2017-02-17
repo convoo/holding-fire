@@ -33,11 +33,15 @@
             class="custom"
             alt="Convoo"
             logo="images/logo.svg"
-            text="Website coming soon! Subscribe to find out when we launch!"
             email="hello@convoo.me"
             thanks="Thank you for subscribing! Follow us on Twitter for updates."
             twitter = "@convoo"
-        ></holding-fire>
+        >
+        <div class="heading">A place for conversations</div>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Launching soon!</p>
+        </holding-fire>
         </template>
       </demo-snippet>
     </div>
@@ -49,66 +53,40 @@
 
     </style>
     <style is="custom-style">
+    .heading{
+        font-family: Roboto-BoldCondensed;
+        font-size: 33px;
+        color: #4F79BA;
+        letter-spacing: 0.33px;
+        margin-bottom: 40px;
+        margin-top: 10px;
+    }
     holding-fire.custom{
-        --holding-fire-input-color: #black;
         --holding-fire-background: {
-            background-color:#fefefe;
+            /*background: url(images/background.jpg);*/
         }
         --holding-fire-overlay:{
-            display:none;
+
         }
         --holding-fire-container:{
             margin: auto;
-            position: relative;
-            top:-100px;
-            width: 90%;
-            height: 250px;
             opacity: 1;
             text-align: center;
         }
         --holding-fire-logo: {       
             margin-bottom: 30px;
-            width: 300px; 
-            height: 70px;
         }
-        --holding-fire-welcome-text:{
-            color: black;
-            font-size: 15px;
-            font-weight: 400;
-            opacity: 0;
-            padding:30px;
-            -webkit-font-smoothing: antialiased;
-            animation-name: fade;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in-out;
-            animation-duration: 1s;
-            animation-fill-mode: forwards;
-            animation-delay: 0.8s;
-        }
+
         --holding-fire-thankyou-text:{
             color: black;
             font-size: 20px;
             font-weight: 400;
         }
         --holding-fire-email-text:{
-            color: white;
-            font-size: 12px;
-            padding-top: -10px;
-            -webkit-font-smoothing: antialiased;
-            opacity: 0;
-            animation-name: fade;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in-out;
-            animation-duration: 3s;
-            animation-fill-mode: forwards;
-            animation-delay: 6s;
-            text-decoration:none;
+
         }
         --holding-fire-subscribe-button:{
-            background-color: #60b559;
-            color: white;
-            width: 100%;
-            height: 40px;
+ 
         }
         --holding-fire-twitter-button:{
             background-color:  #58aae8;
@@ -122,22 +100,12 @@
             text-transform: capitalize;
         }
         --holding-fire-input:{
-            padding-left: 7px;
             text-align: left;
             
         }
         --holding-fire-subscribe-container:{
-            width: 300px;
             margin: auto;
-            opacity: 0;
-            animation-name: fade;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in-out;
-            animation-duration: 2s;
-            animation-fill-mode: forwards;
-            animation-delay: 2.7s;
             background-color: white;
-            padding:20px;
         }
         --holding-fire-twitter-container:{
             width: 300px;

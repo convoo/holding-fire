@@ -61,7 +61,6 @@ The following custom properties and mixins are available for styling:
         bottom: 0px;
         right: 0px;
         top: 0px;
-        overflow:none 
         @apply(--layout-horizontal);
         @apply(--layout-center); 
     }
@@ -71,8 +70,12 @@ The following custom properties and mixins are available for styling:
         bottom: 0px;
         right: 0px;
         top: 0px;
+        -webkit-background-size: cover;
+ +      -moz-background-size: cover;
+ +      -o-background-size: cover;
+ +      background-size: cover;
+        background-color: black;
         @apply(--holding-fire-background);
-        display: none;
     }
     .overlay{
         position: absolute;
@@ -82,11 +85,55 @@ The following custom properties and mixins are available for styling:
         top: 0px;
         z-index: 200;
         @apply(--holding-fire-overlay);
-        display: none;
     }
     .container{
         z-index: 400;
+        width: 1117px;
+        height: 580px;
+        display: inline-block;
+        background-image: -webkit-linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
+        background-image: -o-linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
+        background-image: linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
+        border-radius: 2px;
         @apply(--holding-fire-container); 
+    }
+    .inner-container{
+        @apply(--layout-horizontal);
+        @apply(--layout-center); 
+    }
+    .logo{
+        margin-top: 40px;
+        margin-bottom: 80px;
+        width: 150px;
+        height: 27px;
+        @apply(--holding-fire-logo); 
+    }
+    .content{
+        width: 514px;
+        font-family: Georgia, Times, 'Times New Roman', serif; 
+        font-size: 1em;
+        color: #000000;
+        letter-spacing: 0.32px;
+        line-height: 1.5em;
+        text-align: left;
+        padding-left: 75px;
+        margin-right:73px;
+    }
+    .subscribe-container{
+        margin-top: 55px;
+        width: 380px;
+        background: #FFFFFF;
+        box-shadow: 0 1px 0 0 rgba(0,0,0,0.13);
+        border-radius: 2px;
+        text-align: left;
+    }
+    .subscribe-title{
+        padding:20px;
+        padding-left:30px;
+        font-size: 14px;
+        color: #757C84;
+        letter-spacing: 0.91px;
+        border-bottom: 1px solid #F0EEEE;
     }
     .welcome-text{
         z-index: 400;
@@ -97,11 +144,28 @@ The following custom properties and mixins are available for styling:
         @apply(--holding-fire-thankyou-text); 
     }
     .email a{
+        opacity: 0.32;
+        font-family: Roboto-Regular;
+        font-size: 11px;
+        color: #000000;
+        letter-spacing: 0.2px;
+        text-decoration:none;
         @apply(--holding-fire-email-text); 
     }
 
     paper-button.subscribe {
         z-index: 400;
+        width: 100%;
+        height: 44px;
+        background: #FFFFFF;
+        border: 1px solid #6092E0;
+        border-radius: 2px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-family: Roboto-Bold;
+        font-size: 14px;
+        color: #6092E0;
+        letter-spacing: 0.05px;
         @apply(--holding-fire-subscribe-button); 
     }
     paper-button.twitter {
@@ -109,24 +173,20 @@ The following custom properties and mixins are available for styling:
         @apply(--holding-fire-twitter-button); 
     }
     paper-input.custom {
-        --paper-input-container-color: var(--holding-fire-input-color, white);
-        --paper-input-container-focus-color: var(--holding-fire-input-color, white);
-        --paper-input-container-invalid-color: var(--holding-fire-input-color, white);
-        --paper-input-container-input-color: var(--holding-fire-input-color, white);
+        --paper-input-container-color: var(--holding-fire-input-color, gray);
+        --paper-input-container-focus-color: var(--holding-fire-input-color, gray);
+        --paper-input-container-invalid-color: var(--holding-fire-input-color, gray);
+        --paper-input-container-input-color: var(--holding-fire-input-color, gray);
         z-index: 400;
         @apply(--holding-fire-input); 
     }
-    .subscribe-form{
-        z-index: 400;
-        @apply(--holding-fire-subscribe-container); 
+    .form{
+        padding-top: 20px;
+        padding-left: 35px;
+        padding-right: 40px;
+        padding-bottom: 5px;
     }
-    .twitter-form{
-        z-index: 400;
-        @apply(--holding-fire-twitter-container); 
-    }
-    .logo{
-        @apply(--holding-fire-logo); 
-    }
+
     .show-thanks{
         @apply(--holding-fire-show-thankyou); 
     }
@@ -167,29 +227,40 @@ The following custom properties and mixins are available for styling:
     <div class="overlay"></div>
     <div class="container">
         <iron-image src="[[logo]]" class="logo" sizing="contain" alt="[[alt]]]"></iron-image></br>
-        <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
-            <h2 class="welcome-text cant-select">[[text]]</h2>
-            <form class="subscribe-form">
-                <paper-input label="Email:" class="custom" id="email"></paper-input></br>            
-                <paper-button toggles raised class="subscribe" on-tap="subscribe">Subscribe</paper-button>
-            </form>
-        </template>
+        <div class="inner-container wrap">
 
-        <template is="dom-if" if="{{subscribed}}"> 
-            <div hidden="{{!subscribed}}" class="show-thanks">
-                <h2 class="thankyou-text cant-select">[[thanks]]</h2>
-                <form class="twitter-form">
-                    <template is="dom-if" if="{{twitter}}">        
-                        <paper-button toggles raised class="twitter" on-tap="_twitter">
-                            <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
-                            <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
-                            </svg>Follow us on Twitter
-                        </paper-button>
-                    </template>
-                </form>
+            <div class="content"> <content></content></div>
+            
+            <div class="subscribe-container">
+                <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
+                        <div class="subscribe-title">BE THE FIRST TO KNOW</div>
+                        <div class="form">
+                            <paper-input label="Name" class="custom" id="name"></paper-input></br>    
+                            <paper-input label="Email address" class="custom" id="email"></paper-input></br>            
+                            <paper-button toggles class="subscribe" on-tap="subscribe">Subscribe</paper-button>
+                            <p class="email"><a href="mailto:[[email]]">[[email]]</a></p>
+                        </div>
+                </template>
+
+                <template is="dom-if" if="{{subscribed}}"> 
+                    <div hidden="{{!subscribed}}" class="show-thanks">
+                        <h2 class="thankyou-text cant-select">[[thanks]]</h2>
+                        <form class="twitter-form">
+                            <template is="dom-if" if="{{twitter}}">        
+                                <paper-button toggles raised class="twitter" on-tap="_twitter">
+                                    <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
+                                    <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
+                                    </svg>Follow us on Twitter
+                                </paper-button>
+                            </template>
+                        </form>
+                    </div>
+                </template>
+
             </div>
-        </template>
-        <p class="email"><a href="mailto:[[email]]">[[email]]</a></p>
+
+        </div>
+
     </div>
 </template>
 
@@ -268,7 +339,7 @@ The following custom properties and mixins are available for styling:
         var date = new Date();
         var epoch = date.getTime();
         if(this._validateEmail(this.$$("#email").value)){
-            this.$.doc.ref.push({email: this.$$("#email").value, date: epoch});  
+            this.$.doc.ref.push({name: this.$$("#name").value, email: this.$$("#email").value, date: epoch});  
             this.subscribed = true;
         }
     },
