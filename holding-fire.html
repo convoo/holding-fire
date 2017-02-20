@@ -89,43 +89,67 @@ The following custom properties and mixins are available for styling:
     .container{
         z-index: 400;
         width: 1117px;
-        height: 580px;
+        min-height: 580px;
         display: inline-block;
         background-image: -webkit-linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
         background-image: -o-linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
         background-image: linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
         border-radius: 2px;
+        margin: auto;
+        opacity: 1;
+        text-align: center;
         @apply(--holding-fire-container); 
     }
     .inner-container{
         @apply(--layout-horizontal);
         @apply(--layout-center); 
+        @apply(--layout-wrap);
     }
     .logo{
         margin-top: 40px;
-        margin-bottom: 80px;
         width: 150px;
         height: 27px;
+        margin-bottom: 30px;
         @apply(--holding-fire-logo); 
     }
     .content{
-        width: 514px;
+        max-width: 514px;
         font-family: Georgia, Times, 'Times New Roman', serif; 
         font-size: 1em;
         color: #000000;
         letter-spacing: 0.32px;
         line-height: 1.5em;
         text-align: left;
-        padding-left: 75px;
-        margin-right:73px;
+        margin: auto;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-top: 0px;
     }
+
+        @media (min-width: 893px) {
+            .content{
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+            .subscribe-container{
+                margin-top: 230px;
+                min-width: 380px;
+                margin-right:45px;
+            }
+            .inner-container{
+                margin-top:50px;
+            }
+        }
+
     .subscribe-container{
-        margin-top: 55px;
-        width: 380px;
+        margin: auto;
+        width: 340px;
         background: #FFFFFF;
         box-shadow: 0 1px 0 0 rgba(0,0,0,0.13);
         border-radius: 2px;
         text-align: left;
+        margin-bottom: 30px;
+        height: 370px;
     }
     .subscribe-title{
         padding:20px;
@@ -139,10 +163,6 @@ The following custom properties and mixins are available for styling:
     .welcome-text{
         z-index: 400;
         @apply(--holding-fire-welcome-text); 
-    }
-    .thankyou-text{
-        z-index: 400;
-        @apply(--holding-fire-thankyou-text); 
     }
     .email a{
         opacity: 0.32;
@@ -171,6 +191,17 @@ The following custom properties and mixins are available for styling:
     }
     paper-button.twitter {
         z-index: 400;
+        margin: auto;
+        width: 90%;
+        margin-left: 20px;
+        background-color:  #58aae8;
+        color: white;
+        height: 40px;
+        font-weight: bold;
+        font-size: 14px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-transform: capitalize;
         @apply(--holding-fire-twitter-button); 
     }
     paper-input.custom {
@@ -179,6 +210,7 @@ The following custom properties and mixins are available for styling:
         --paper-input-container-invalid-color: var(--holding-fire-input-color, gray);
         --paper-input-container-input-color: var(--holding-fire-input-color, gray);
         z-index: 400;
+        text-align: left;
         @apply(--holding-fire-input); 
     }
     .form{
@@ -228,24 +260,24 @@ The following custom properties and mixins are available for styling:
     <div class="overlay"></div>
     <div class="container">
         <iron-image src="[[logo]]" class="logo" sizing="contain" alt="[[alt]]]"></iron-image></br>
-        <div class="inner-container wrap">
+        <div class="inner-container">
 
             <div class="content"> <content></content></div>
             
             <div class="subscribe-container">
                 <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
-                        <div class="subscribe-title">BE THE FIRST TO KNOW</div>
+                        <div class="subscribe-title">[[subHeader]]</div> 
                         <div class="form">
                             <paper-input label="Name" class="custom" id="name"></paper-input></br>    
                             <paper-input label="Email address" class="custom" id="email"></paper-input></br>            
-                            <paper-button toggles class="subscribe" on-tap="subscribe">Subscribe</paper-button>
+                            <paper-button toggles class="subscribe" on-tap="subscribe">[[subButton]]</paper-button>
                             <p class="email"><a href="mailto:[[email]]">[[email]]</a></p>
                         </div>
                 </template>
 
                 <template is="dom-if" if="{{subscribed}}"> 
                     <div hidden="{{!subscribed}}" class="show-thanks">
-                        <h2 class="thankyou-text cant-select">[[thanks]]</h2>
+                        <div class="subscribe-title">[[thanks]]</div>
                         <form class="twitter-form">
                             <template is="dom-if" if="{{twitter}}">        
                                 <paper-button toggles raised class="twitter" on-tap="_twitter">
@@ -334,6 +366,24 @@ The following custom properties and mixins are available for styling:
         alt: {
             type: String,
         },
+        /** 
+        * Header text for subscription section 
+        * 
+        * @type {String} 
+        */ 
+        subHeader: { 
+            type: String, 
+            value: "BE THE FIRST TO KNOW" 
+        }, 
+        /** 
+        * Button text for subscription section 
+        * 
+        * @type {String} 
+        */ 
+        subButton: { 
+            type: String, 
+            value: "Subscribe" 
+        }, 
       },
 
     subscribe: function(){
@@ -351,7 +401,7 @@ The following custom properties and mixins are available for styling:
     },
 
     _twitter: function(){
-        window.location = "http://www.twitter.com/[[twitter]]";
+        window.location = "http://www.twitter.com/"+this.twitter;
     }
 
     });
