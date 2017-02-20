@@ -189,6 +189,11 @@ The following custom properties and mixins are available for styling:
         letter-spacing: 0.05px;
         @apply(--holding-fire-subscribe-button); 
     }
+
+    a.button {
+        text-decoration: none;
+    }
+
     paper-button.twitter {
         z-index: 400;
         margin: auto;
@@ -221,8 +226,21 @@ The following custom properties and mixins are available for styling:
     }
 
     .show-thanks{
+        height: 100%;
         @apply(--holding-fire-show-thankyou); 
     }
+
+    .twitter-form {
+        height: 100%;
+        padding: 20px;
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+    }
+
+    .twitter-form a {
+        width: 100%;
+    }
+
     .cant-select {
         -webkit-touch-callout: none; 
         -webkit-user-select: none; 
@@ -268,25 +286,28 @@ The following custom properties and mixins are available for styling:
                 <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
                         <div class="subscribe-title">[[subHeader]]</div> 
                         <div class="form">
-                            <paper-input label="Name" class="custom" id="name"></paper-input></br>    
-                            <paper-input label="Email address" class="custom" id="email"></paper-input></br>            
-                            <paper-button toggles class="subscribe" on-tap="subscribe">[[subButton]]</paper-button>
+                            <paper-input label="Name" class="custom" id="name" required error-message="Please enter your name" on-keydown="_catchEnter"></paper-input></br>    
+                            <paper-input label="Email address" class="custom" id="email" type="email" required error-message="Please enter a valid email address" on-keydown="_catchEnter"></paper-input></br>            
+                            <paper-button class="subscribe" on-tap="subscribe">[[subButton]]</paper-button>
                             <p class="email"><a href="mailto:[[email]]">[[email]]</a></p>
                         </div>
                 </template>
 
                 <template is="dom-if" if="{{subscribed}}"> 
                     <div hidden="{{!subscribed}}" class="show-thanks">
-                        <div class="subscribe-title">[[thanks]]</div>
-                        <form class="twitter-form">
-                            <template is="dom-if" if="{{twitter}}">        
-                                <paper-button toggles raised class="twitter" on-tap="_twitter">
-                                    <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
-                                    <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
-                                    </svg>Follow us on Twitter
-                                </paper-button>
+                        <div class="subscribe-title">[[thanksHeader]]</div>
+                        <div class="twitter-form">
+                            <p>[[thanks]]</p>
+                            <template is="dom-if" if="{{twitter}}">
+                                <a href$="https://twitter.com/[[twitter]]" target="_blank" tabindex="-1" class="button">
+                                    <paper-button raised class="twitter">
+                                        <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
+                                        <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
+                                        </svg>Follow us on Twitter
+                                    </paper-button>
+                                </a>
                             </template>
-                        </form>
+                        </div>
                     </div>
                 </template>
 
@@ -325,6 +346,15 @@ The following custom properties and mixins are available for styling:
         thanks: {
           type: String,
         },
+        /** 
+        * Header text for thanks section 
+        * 
+        * @type {String} 
+        */ 
+        thanksHeader: { 
+            type: String, 
+            value: "THANKS FOR SUBSCRIBING" 
+        }, 
         /**
         * Email to be displayed below the subscription form 
         *
@@ -389,19 +419,18 @@ The following custom properties and mixins are available for styling:
     subscribe: function(){
         var date = new Date();
         var epoch = date.getTime();
-        if(this._validateEmail(this.$$("#email").value)){
+        n = this.$$("#name").validate()
+        e = this.$$("#email").validate()
+        if( n && e ){
             this.$.doc.ref.push({name: this.$$("#name").value, email: this.$$("#email").value, date: epoch});  
             this.subscribed = true;
         }
     },
 
-    _validateEmail: function(email) {
-        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    },
-
-    _twitter: function(){
-        window.location = "http://www.twitter.com/"+this.twitter;
+    _catchEnter: function(e){
+        if (e.keyCode ===13){
+            this.subscribe();
+        }
     }
 
     });
