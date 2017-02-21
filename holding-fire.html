@@ -1,7 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../polymerfire/firebase-document.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-image/iron-image.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <!--
@@ -88,16 +87,15 @@ The following custom properties and mixins are available for styling:
     }
     .container{
         z-index: 400;
-        width: 1117px;
-        min-height: 580px;
-        display: inline-block;
+        padding: 40px;
+        max-width: 1117px;
+        margin: auto;
+        opacity: 1;
+        border-radius: 2px;
+        text-align: center;
         background-image: -webkit-linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
         background-image: -o-linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
         background-image: linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
-        border-radius: 2px;
-        margin: auto;
-        opacity: 1;
-        text-align: center;
         @apply(--holding-fire-container); 
     }
     .inner-container{
@@ -106,49 +104,42 @@ The following custom properties and mixins are available for styling:
         @apply(--layout-wrap);
     }
     .logo{
-        margin-top: 40px;
         width: 150px;
         height: 27px;
-        margin-bottom: 30px;
+        padding-bottom: 40px;
+        margin: auto;
         @apply(--holding-fire-logo); 
     }
     .content{
-        max-width: 514px;
         font-family: Georgia, Times, 'Times New Roman', serif; 
         font-size: 1em;
         color: #000000;
         letter-spacing: 0.32px;
         line-height: 1.5em;
         text-align: left;
+        vertical-align: top;
         margin: auto;
-        padding-left: 30px;
-        padding-right: 30px;
-        margin-top: 0px;
+        padding-bottom: 20px;
     }
 
-        @media (min-width: 893px) {
+        @media (min-width: 959px) {
             .content{
-                padding-left: 0px;
-                padding-right: 0px;
+                max-width: 500px;
+                padding-bottom: 0px;
             }
             .subscribe-container{
-                margin-top: 230px;
-                min-width: 380px;
-                margin-right:45px;
-            }
-            .inner-container{
-                margin-top:50px;
+                max-width: 340px;
+                margin-left:40px;
             }
         }
 
     .subscribe-container{
-        margin: auto;
-        width: 340px;
+        width: 100%;
+        min-width: 340px;
+        text-align: left;
         background: #FFFFFF;
         box-shadow: 0 1px 0 0 rgba(0,0,0,0.13);
         border-radius: 2px;
-        text-align: left;
-        margin-bottom: 30px;
         height: 370px;
     }
     .subscribe-title{
@@ -277,12 +268,13 @@ The following custom properties and mixins are available for styling:
     <div class="background"></div>
     <div class="overlay"></div>
     <div class="container">
-        <iron-image src="[[logo]]" class="logo" sizing="contain" alt="[[alt]]]"></iron-image></br>
+        <img src="[[logo]]" class="logo" sizing="contain" alt="[[alt]]]">
         <div class="inner-container">
 
             <div class="content"> <content></content></div>
-            
+         
             <div class="subscribe-container">
+                
                 <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
                         <div class="subscribe-title">[[subHeader]]</div> 
                         <div class="form">
@@ -292,7 +284,7 @@ The following custom properties and mixins are available for styling:
                             <p class="email"><a href="mailto:[[email]]">[[email]]</a></p>
                         </div>
                 </template>
-
+ <!--  
                 <template is="dom-if" if="{{subscribed}}"> 
                     <div hidden="{{!subscribed}}" class="show-thanks">
                         <div class="subscribe-title">[[thanksHeader]]</div>
@@ -309,10 +301,8 @@ The following custom properties and mixins are available for styling:
                             </template>
                         </div>
                     </div>
-                </template>
-
+                </template>-->
             </div>
-
         </div>
 
     </div>
