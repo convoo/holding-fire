@@ -33,13 +33,13 @@
             app-name="animated"
             path="/subscribers"
             alt="Convoo"
-            logo="images/logo.svg"
-            email="hello@convoo.me"
+            logo="images/lipsum.png"
+            email="hello@example.com"
             sub-header="Sign up to find out when we launch!"
             sub-button="Sign up"
             thanks="Thank you for subscribing!"
             thanks-header=""
-            twitter = "convoo"
+            twitter = "example"
             no-name
         >
         <p>A revolutionary new startup. Website coming soon!</p>
@@ -122,24 +122,16 @@
             app-name="basic"
             path="/subscribers"
             alt="Convoo"
-            logo="images/logo.svg"
-            email="hello@convoo.me"
+            logo="images/lipsum.png"
+            email="hello@example.com"
             sub-header="Sign up to find out when we launch!"
             sub-button="Sign up"
             thanks="Thank you for subscribing!"
             thanks-header=""
-            twitter = "convoo"
-            no-name
+            twitter = "example"
         >
             <p>A revolutionary new startup. Website coming soon!</p>
         </holding-fire>
-        <style is="custom-style">
-        holding-fire.basic{
-            --holding-fire-host: {
-                background-image: url(images/background.jpg);
-            }
-        }
-        </style>
         </template>
       </demo-snippet>
     </div>
@@ -149,7 +141,7 @@
 
 
     <div>
-      <h3>Custom holding-fire demo</h3>
+      <h3>Custom horizontal holding-fire demo</h3>
       <demo-snippet>
         <template>
         <firebase-app
@@ -163,10 +155,10 @@
             app-name="custom"
             path="/subscribers"
             alt="Convoo"
-            logo="images/logo.svg"
-            email="hello@convoo.me"
+            logo="images/lipsum.png"
+            email="hello@example.com"
             thanks="THANK YOU FOR SUBSCRIBING"
-            twitter = "@convoo"
+            twitter = "example"
         >
         <div class="heading">Lipsum Title</div>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
@@ -178,15 +170,46 @@
             --holding-fire-host: {
                 background-image: url(images/background.jpg);
             }
+
+            --holding-fire-container: {
+                border-radius: 5px;
+            }
+
             --holding-fire-inner-container: {
                 @apply(--layout-horizontal);
                 @apply(--layout-wrap);
+                margin-bottom: 50px;
+            }
+
+            --holding-fire-content: {
+                text-align: left;
+            }
+
+            --holding-fire-subscribe-container: {
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+            }
+            --holding-fire-thanks-container: {
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+            }
+
+            --holding-fire-subscribe-title: {
+                color: #757C84;
+                text-align: center;
+            }
+            --holding-fire-thanks-title: {
+                color: #757C84;
+                text-align: center;
+            }
+            --holding-fire-subscribe-button: {
+                background: white;
             }
         }
         holding-fire.custom .heading{
             font-family: Roboto;
             font-size: 33px;
-            color: #4F79BA;
+            color: #757C84;
             letter-spacing: 0.33px;
             margin-bottom: 40px;
         }
@@ -195,6 +218,84 @@
       </demo-snippet>
     </div>
     
+
+    <div>
+      <h3>Custom no container holding-fire demo</h3>
+      <demo-snippet>
+        <template>
+        <firebase-app
+            name="custom-no-container"
+            api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+            auth-domain="convoo-login-demo.firebaseapp.com"
+            database-url="https://convoo-login-demo.firebaseio.com">
+        </firebase-app>
+        <holding-fire
+            class="custom-no-container"
+            app-name="custom-no-container"
+            path="/subscribers"
+            alt="Convoo"
+            logo="images/lipsum.png"
+            email="hello@example.com"
+            thanks="THANK YOU FOR SUBSCRIBING"
+            twitter = "example"
+        >
+        <div class="heading">Lipsum Title</div>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Launching soon!</p>
+        </holding-fire>
+        <style is="custom-style">
+        holding-fire.custom-no-container{
+            --holding-fire-host: {
+                background: #fff;
+            }
+
+            --holding-fire-container: {
+                background: rgba(0,0,0,0)
+            }
+
+            --holding-fire-inner-container: {
+                @apply(--layout-horizontal);
+                @apply(--layout-wrap);
+                margin-bottom: 50px;
+            }
+
+            --holding-fire-content: {
+                text-align: left;
+            }
+
+            --holding-fire-subscribe-container: {
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+            }
+            --holding-fire-thanks-container: {
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+            }
+
+            --holding-fire-subscribe-title: {
+                color: #757C84;
+                text-align: center;
+            }
+            --holding-fire-thanks-title: {
+                color: #757C84;
+                text-align: center;
+            }
+            --holding-fire-subscribe-button: {
+                background: white;
+            }
+        }
+        holding-fire.custom-no-container .heading{
+            font-family: Roboto;
+            font-size: 33px;
+            color: #757C84;
+            letter-spacing: 0.33px;
+            margin-bottom: 40px;
+        }
+        </style>
+        </template>
+      </demo-snippet>
+    </div>
 
 
 

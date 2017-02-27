@@ -54,10 +54,15 @@ The following custom properties and mixins are available for styling:
         display: block;
         padding: 50px;
         @apply(--layout-center);
+        background: #000;
         background-repeat: no-repeat;
         background-size: cover;
         @apply(--holding-fire-host);
     }
+
+        .overlay{
+            @apply(--holding-fire-overlay);
+        }
 
         .container{
             max-width: 960px;
@@ -66,13 +71,13 @@ The following custom properties and mixins are available for styling:
             padding: 20px;
             z-index: 400;
             opacity: 1;
-            background: lightgray;
+            background: white;
             @apply(--holding-fire-container); 
         }
 
             .logo{
-                margin: auto;
-                padding-bottom: 50px;
+                margin: 20px auto;
+                padding-bottom: 30px;
                 @apply(--holding-fire-logo); 
             }
 
@@ -95,6 +100,7 @@ The following custom properties and mixins are available for styling:
                 }
 
                 .subscribe-container{
+                    min-width: 280px;
                     margin: auto;
                     text-align: left;
                     @apply(--holding-fire-subscribe-container);
@@ -145,6 +151,7 @@ The following custom properties and mixins are available for styling:
                     }
                 
                 .thanks-container{
+                    min-width: 280px;
                     margin: auto;
                     text-align: left;
                     @apply(--holding-fire-thanks-container);
@@ -208,7 +215,7 @@ The following custom properties and mixins are available for styling:
         path="[[path]]"
         data="{{data}}">
     </firebase-document>
-
+    <div class="overlay"></div>
     <div class="container">
         <img src="[[logo]]" class="logo" sizing="contain" alt="[[alt]]]">
         <div class="inner-container">
