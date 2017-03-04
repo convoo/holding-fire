@@ -3,6 +3,7 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-media-query/iron-media-query.html">
 <!--
 `holding-fire`
 
@@ -59,7 +60,7 @@ The following custom properties and mixins are available for styling:
     <style>
     :host {
         display: block;
-        padding: 50px;
+        padding: var(--mobile-border, 50px);
         @apply(--layout-center);
         background: #000;
         background-repeat: no-repeat;
@@ -72,6 +73,8 @@ The following custom properties and mixins are available for styling:
         }
 
         .container{
+            display: block;
+            overflow: hidden;
             max-width: 960px;
             text-align: center;
             margin: auto;
@@ -203,6 +206,9 @@ The following custom properties and mixins are available for styling:
                             text-transform: capitalize;
                             @apply(--holding-fire-twitter-button); 
                         }
+                        .twitter-icon {
+                            @apply(--holding-fire-twitter-icon); 
+                        }
     .noselect {
         -webkit-touch-callout: none; 
         -webkit-user-select: none; 
@@ -222,6 +228,8 @@ The following custom properties and mixins are available for styling:
         path="[[path]]"
         data="{{data}}">
     </firebase-document>
+      <iron-media-query query="(max-width: 600px)" query-matches="{{smallScreen}}"></iron-media-query>
+     
     <div class="overlay"></div>
     <div class="container">
         <img src="[[logo]]" class="logo" sizing="contain" alt="[[alt]]]">
@@ -229,7 +237,7 @@ The following custom properties and mixins are available for styling:
             <div class="content"> <slot></slot></div>
             <template is="dom-if" if="{{!subscribed}}" class="hidden">
                 <div class="subscribe-container">
-                        <div class="subscribe-title noselect">[[subHeader]]</div> 
+                        <div class="subscribe-title noselect">[[subHeader]]- {{smallScreen}}</div> 
                         <div class="subscribe-form">
                             <template is="dom-if" if="{{!noName}}">
                                 <paper-input label="Name" class="custom" id="name" required error-message="Please enter your name" on-keydown="_catchEnter"></paper-input></br>    
@@ -250,7 +258,7 @@ The following custom properties and mixins are available for styling:
                         <template is="dom-if" if="{{twitter}}">
                             <a href$="https://twitter.com/[[twitter]]" target="_blank" tabindex="-1" class="button">
                                 <paper-button raised="[[!flatButtons]]" class="twitter">
-                                    <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
+                                    <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px" class="twitter-icon">
                                     <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
                                     </svg>Follow us on Twitter
                                 </paper-button>
@@ -275,6 +283,15 @@ The following custom properties and mixins are available for styling:
         */
         logo: {
           type: String,
+        },
+        /**
+        * Value denotes if the user is on a small screen
+        *
+        * @type {Boolean}
+        */
+        smallScreen: {
+          type: Boolean,
+          observer: '_smallScreen'
         },
         /**
         * Text to be displayed below the logo
@@ -382,6 +399,16 @@ The following custom properties and mixins are available for styling:
         },
       },
 
+    _smallScreen: function(){
+        if (this.smallScreen){
+            this.customStyle['--mobile-border'] = '5px';
+            this.updateStyles();
+        } else {
+            this.customStyle['--mobile-border'] = '50px';
+            this.updateStyles();
+        }
+
+    },
     subscribe: function(){
         e = this.$$("#email").validate()
         n = true;

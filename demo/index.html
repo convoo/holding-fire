@@ -85,6 +85,8 @@
             }
 
             --holding-fire-logo: {
+                width: 100%;
+                max-width: 300px;
                 animation-name: zoom;
                 animation-iteration-count: 1;
                 animation-timing-function: ease-in-out;
@@ -93,11 +95,48 @@
             }
 
             --holding-fire-inner-container: {
+                display: block;
+                overflow: hidden;
+                width: 100%;
                 animation-name: fade;
                 animation-iteration-count: 1;
                 animation-timing-function: ease-in-out;
                 animation-duration: 1.2s;
                 animation-fill-mode: forwards;
+            }
+            --holding-fire-content:{
+                padding: 0px;
+                min-width: 180px;
+            }
+            --holding-fire-subscribe-container:{
+                padding: 0px;
+                min-width: 180px;
+                max-width: 500px;
+            }
+            --holding-fire-subscribe-title:{
+                padding: 0px;
+                min-width: 180px;
+                text-align: center;
+            }
+            --holding-fire-thanks-container:{
+                padding: 0px;
+                min-width: 180px;
+                text-align: center;
+            }
+            --holding-fire-thanks-title:{
+                display: none;
+            }
+            --holding-fire-thanks-section:{
+                padding:0px;
+                min-width: 180px;
+            }
+            --holding-fire-twitter-button:{
+                margin-left:0px;
+                font-size: 10px;
+            }
+            --holding-fire-twitter-icon:{
+                width: 12px;
+                height: 12px;
             }
 
         }
