@@ -1,7 +1,7 @@
 # holding-fire
 
 <p align="center">
-  <img alt="holding-fire" src="HoldingFire400.png" width="300">
+  <img alt="holding-fire" src="Holding-Fire.png" width="300">
 </p>
 
 <p align="center">
