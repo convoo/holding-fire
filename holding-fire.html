@@ -29,216 +29,181 @@ Style the element with CSS as you would a normal DOM element.
 
 The following custom properties and mixins are available for styling:
 
-| Custom property | Description | Default |
-| --- | --- | --- |
-| `--holding-fire-input-color` | The color for the input | `white` |
-| `--holding-fire-background` | Mixin for the background | `{}` |
-| `--holding-fire-overlay` | Mixin for the overlay  | `{}` |
-| `--holding-fire-container` | Mixin ofr the container | `{}` |
-| `--holding-fire-logo` | Mixin for the logo | `{}` |
-| `--holding-fire-email-text` | Mixin for the email text | `{}` |
-| `--holding-fire-email-text` | Mixin for the email text | `{}` |
-| `--holding-fire-welcome-text` | Mixin for the welcome text | `{}` |
-| `--holding-fire-input` | Mixin for the input | `{}` |
-| `--holding-fire-subscribe-button` | Mixin for the subscribe button | `{}` |
-| `--holding-fire-twitter-button` | Mixin for the twitter button | `{}` |
-| `---holding-fire-subscribe-container` | Mixin for the subscribe container| `{}` |
-| `--holding-fire-twitter-container` | Mixin for the Twitter container | `{}` |
-| `--holding-fire-show-thankyou` | Mixin for revealing the thank you container | `{}` |
+| Custom property | Description |
+| --- | --- |
+| `--holding-fire-host` | Mixin for the host element |
+| `--holding-fire-overlay` | Mixin for an overlay |
+| `--holding-fire-container` | Mixin for the container |
+| `--holding-fire-logo` | Mixin for the logo |
+| `--holding-fire-inner-container` | Mixin for the inner container with content and form |
+| `--holding-fire-content` | Mixin for the content section |
+| `---holding-fire-subscribe-container` | Mixin for the subscribe container|
+| `---holding-fire-subscribe-title` | Mixin for the subscribe title|
+| `---holding-fire-subscribe-form` | Mixin for the subscribe form|
+| `--holding-fire-input` | Mixin for the inputs |
+| `---holding-fire-subscribe-button` | Mixin for the subscribe button|
+| `--holding-fire-email` | Mixin for the email paragraph |
+| `--holding-fire-email-link` | Mixin for the email text |
+| `---holding-fire-thanks-container` | Mixin for the thanks container|
+| `---holding-fire-thanks-title` | Mixin for the thanks title|
+| `---holding-fire-thanks-section` | Mixin for the thanks section|
+| `--holding-fire-twitter-link` | Mixin for the twitter link |
+| `--holding-fire-twitter-button` | Mixin for the twitter button |
+| `--holding-fire-animations` | Mixin for any animations you want to define. First one will not be registered. See demo. |
 
 @demo demo/index.html 
 -->
 
 <dom-module id="holding-fire">
   <template>
-      
     <style>
     :host {
         display: block;
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
-        right: 0px;
-        top: 0px;
-        @apply(--layout-horizontal);
-        @apply(--layout-center); 
-    }
-    .background{     
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
-        right: 0px;
-        top: 0px;
-        -webkit-background-size: cover;
- +      -moz-background-size: cover;
- +      -o-background-size: cover;
- +      background-size: cover;
-        background-color: black;
-        @apply(--holding-fire-background);
-    }
-    .overlay{
-        position: absolute;
-        left: 0px;
-        bottom: 0px;
-        right: 0px;
-        top: 0px;
-        z-index: 200;
-        @apply(--holding-fire-overlay);
-    }
-    .container{
-        z-index: 400;
-        padding: 20px;
-        max-width: 1117px;
-        margin: auto;
-        opacity: 1;
-        border-radius: 2px;
-        text-align: center;
-        background-image: -webkit-linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
-        background-image: -o-linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
-        background-image: linear-gradient(#F3F2F2 35%, #ECEBEB 100%);
-        @apply(--holding-fire-container); 
-    }
-    .inner-container{
-        @apply(--layout-horizontal);
-        @apply(--layout-center); 
-        @apply(--layout-wrap);
-    }
-    .logo{
-        width: 150px;
-        height: 27px;
-        padding-bottom: 70px;
-        margin: auto;
-        @apply(--holding-fire-logo); 
-    }
-    .content{
-        font-family: Georgia, Times, 'Times New Roman', serif; 
-        font-size: 1em;
-        color: #000000;
-        letter-spacing: 0.32px;
-        line-height: 1.5em;
-        text-align: left;
-        vertical-align: top;
-        margin: auto;
-        padding-bottom: 20px;
+        padding: 50px;
+        @apply(--layout-center);
+        background: #000;
+        background-repeat: no-repeat;
+        background-size: cover;
+        @apply(--holding-fire-host);
     }
 
-        @media (min-width: 1117px) {
-            .container{
-                min-width: 1037px;
-                padding: 40px;
-            }
-            .content{
-                max-width: 600px;
-                margin-top: 0px;
-                padding-bottom: 0px;
-            }
-            .subscribe-container{
-                max-width: 360px;
-                margin-left:40px;
-                margin-bottom: 30px;
-            }
+        .overlay{
+            @apply(--holding-fire-overlay);
         }
 
-    .subscribe-container{
-        width: 100%;
-        min-width: 280px;
-        text-align: left;
-        background: #FFFFFF;
-        box-shadow: 0 1px 0 0 rgba(0,0,0,0.13);
-        border-radius: 2px;
-        height: 370px;
-    }
-    .subscribe-title{
-        padding:20px;
-        padding-left:30px;
-        font-size: 14px;
-        color: #757C84;
-        letter-spacing: 0.91px;
-        border-bottom: 1px solid #F0EEEE;
-        @apply(--holding-fire-subscrbe-title); 
-    }
-    .welcome-text{
-        z-index: 400;
-        @apply(--holding-fire-welcome-text); 
-    }
-    .email a{
-        opacity: 0.32;
-        font-family: Roboto-Regular;
-        font-size: 11px;
-        color: #000000;
-        letter-spacing: 0.2px;
-        text-decoration:none;
-        @apply(--holding-fire-email-text); 
-    }
+        .container{
+            max-width: 960px;
+            text-align: center;
+            margin: auto;
+            padding: 20px;
+            z-index: 400;
+            opacity: 1;
+            background: white;
+            @apply(--holding-fire-container); 
+        }
 
-    paper-button.subscribe {
-        z-index: 400;
-        width: 100%;
-        height: 44px;
-        background: #FFFFFF;
-        border: 1px solid #6092E0;
-        border-radius: 2px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        font-family: Roboto-Bold;
-        font-size: 14px;
-        color: #6092E0;
-        letter-spacing: 0.05px;
-        @apply(--holding-fire-subscribe-button); 
-    }
+            .logo{
+                margin: 20px auto;
+                padding-bottom: 30px;
+                @apply(--holding-fire-logo); 
+            }
 
-    a.button {
-        text-decoration: none;
-    }
+            .inner-container{
+                /*@apply(--layout-horizontal);
+                @apply(--layout-wrap);*/
 
-    paper-button.twitter {
-        z-index: 400;
-        margin: auto;
-        width: 90%;
-        margin-left: 20px;
-        background-color:  #58aae8;
-        color: white;
-        height: 40px;
-        font-weight: bold;
-        font-size: 14px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        text-transform: capitalize;
-        @apply(--holding-fire-twitter-button); 
-    }
-    paper-input.custom {
-        --paper-input-container-color: var(--holding-fire-input-color, gray);
-        --paper-input-container-focus-color: var(--holding-fire-input-color, gray);
-        --paper-input-container-invalid-color: var(--holding-fire-input-color, gray);
-        --paper-input-container-input-color: var(--holding-fire-input-color, gray);
-        z-index: 400;
-        text-align: left;
-        @apply(--holding-fire-input); 
-    }
-    .form{
-        padding-top: 20px;
-        padding-left: 35px;
-        padding-right: 40px;
-        padding-bottom: 5px;
-    }
+                @apply(--layout-vertical);
+                @apply(--holding-fire-inner-container);
+            }
 
-    .show-thanks{
-        height: 100%;
-        @apply(--holding-fire-show-thankyou); 
-    }
+                .content{
+                    color: #000000;
+                    text-align: center;
+                    margin: auto;
+                    padding: 20px;
+                    min-width: 280px;
+                    max-width: 500px;
+                    @apply(--holding-fire-content);
+                }
 
-    .twitter-form {
-        height: 100%;
-        padding: 20px;
-        @apply(--layout-vertical);
-        @apply(--layout-center);
-    }
+                .subscribe-container{
+                    min-width: 280px;
+                    margin: auto;
+                    text-align: left;
+                    @apply(--holding-fire-subscribe-container);
+                }
 
-    .twitter-form a {
-        width: 100%;
-    }
+                    .subscribe-title{
+                        padding:20px;
+                        padding-left:30px;
+                        @apply(--holding-fire-subscribe-title); 
+                    }
 
-    .cant-select {
+                    .subscribe-form{
+                        padding-top: 20px;
+                        padding-left: 35px;
+                        padding-right: 40px;
+                        padding-bottom: 5px;
+                        @apply(--holding-fire-subscribe-form);
+                    }
+                    
+                    paper-input.custom {
+                        z-index: 400;
+                        text-align: left;
+                        --paper-input-container-color: var(--holding-fire-input-container-color);
+                        --paper-input-container-focus-color: var(--holding-fire-input-container-focus-color);
+                        --paper-input-container-invalid-color: var(--holding-fire-input-invalid-color);
+                        --paper-input-container-input-color: var(--holding-fire-input-color);
+                        @apply(--holding-fire-input); 
+                    }
+
+                    paper-button.subscribe {
+                        z-index: 400;
+                        width: 100%;
+                        @apply(--holding-fire-subscribe-button); 
+                    }
+
+                    .email {
+                        text-align: center;
+                        @apply(--holding-fire-email); 
+                    }
+
+                    .email a{
+                        opacity: 0.32;
+                        font-size: 11px;
+                        color: #000000;
+                        text-align: center;
+                        text-decoration:none;
+                        @apply(--holding-fire-email-link);
+                    }
+                
+                .thanks-container{
+                    min-width: 280px;
+                    margin: auto;
+                    text-align: left;
+                    @apply(--holding-fire-thanks-container);
+                }
+
+                    .thanks-title{
+                        padding:20px;
+                        padding-left:30px;
+                        @apply(--holding-fire-thanks-title); 
+                    }
+
+                    .thanks-section{
+                        padding-top: 20px;
+                        padding-left: 35px;
+                        padding-right: 40px;
+                        padding-bottom: 5px;
+                        height: 100%;
+                        padding: 20px;
+                        @apply(--layout-vertical);
+                        @apply(--layout-center);
+                        @apply(--holding-fire-thanks-section);
+                    }
+
+                        .thanks-section a {
+                            width: 100%;
+                            text-decoration: none;
+                            @apply(--holding-fire-twitter-link)
+                        }
+
+                        paper-button.twitter {
+                            z-index: 400;
+                            margin: auto;
+                            width: 90%;
+                            margin-left: 20px;
+                            background-color:  #58aae8;
+                            color: white;
+                            height: 40px;
+                            font-weight: bold;
+                            font-size: 14px;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+                            text-transform: capitalize;
+                            @apply(--holding-fire-twitter-button); 
+                        }
+    .noselect {
         -webkit-touch-callout: none; 
         -webkit-user-select: none; 
         -khtml-user-select: none; 
@@ -246,22 +211,9 @@ The following custom properties and mixins are available for styling:
         -ms-user-select: none; 
         user-select: none; 
     }
-    @keyframes fade {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-    @keyframes zoom {
-        0% {
-            transform: scale(1);
-        }
-        100% {
-            transform: scale(1.1);
-        }
-    }
+
+    @apply(--holding-fire-animations);
+
     </style>
 
     <firebase-document
@@ -270,48 +222,43 @@ The following custom properties and mixins are available for styling:
         path="[[path]]"
         data="{{data}}">
     </firebase-document>
-
-    <div class="background"></div>
     <div class="overlay"></div>
     <div class="container">
         <img src="[[logo]]" class="logo" sizing="contain" alt="[[alt]]]">
         <div class="inner-container">
-
-            <div class="content"> <content></content></div>
-         
-            <div class="subscribe-container">
-                
-                <template is="dom-if" if="{{!subscribed}}" class="hidden"> 
-                        <div class="subscribe-title">[[subHeader]]</div> 
-                        <div class="form">
-                            <paper-input label="Name" class="custom" id="name" required error-message="Please enter your name" on-keydown="_catchEnter"></paper-input></br>    
+            <div class="content"> <slot></slot></div>
+            <template is="dom-if" if="{{!subscribed}}" class="hidden">
+                <div class="subscribe-container">
+                        <div class="subscribe-title noselect">[[subHeader]]</div> 
+                        <div class="subscribe-form">
+                            <template is="dom-if" if="{{!noName}}">
+                                <paper-input label="Name" class="custom" id="name" required error-message="Please enter your name" on-keydown="_catchEnter"></paper-input></br>    
+                            </template>
                             <paper-input label="Email address" class="custom" id="email" type="email" required error-message="Please enter a valid email address" on-keydown="_catchEnter"></paper-input></br>            
-                            <paper-button class="subscribe" on-tap="subscribe">[[subButton]]</paper-button>
+                            <paper-button raised="[[!flatButtons]]" class="subscribe" on-tap="subscribe">[[subButton]]</paper-button>
                             <p class="email"><a href="mailto:[[email]]">[[email]]</a></p>
                         </div>
-                </template>
+                </div>
+            </template>
 
 
-                <template is="dom-if" if="{{subscribed}}"> 
-                    <div hidden="{{!subscribed}}" class="show-thanks">
-                        <div class="subscribe-title">[[thanksHeader]]</div>
-                        <div class="twitter-form">
-                            <p>[[thanks]]</p>
-                            <template is="dom-if" if="{{twitter}}">
-                                <a href$="https://twitter.com/[[twitter]]" target="_blank" tabindex="-1" class="button">
-                                    <paper-button raised class="twitter">
-                                        <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
-                                        <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
-                                        </svg>Follow us on Twitter
-                                    </paper-button>
-                                </a>
-                            </template>
-                        </div>
+            <template is="dom-if" if="{{subscribed}}"> 
+                <div class="thanks-container">
+                    <div class="thanks-title noselect">[[thanksHeader]]</div>
+                    <div class="thanks-section">
+                        <p class="thanks-message noselect">[[thanks]]</p>
+                        <template is="dom-if" if="{{twitter}}">
+                            <a href$="https://twitter.com/[[twitter]]" target="_blank" tabindex="-1" class="button">
+                                <paper-button raised="[[!flatButtons]]" class="twitter">
+                                    <svg viewBox="0 0 20.34 16.17" style="height:15px;fill:#FFF; padding-left: 10px; padding-right: 10px">
+                                    <path class="515a544b-2ee6-4052-8329-f9002443fb0f" d="M7,16.61A11.39,11.39,0,0,0,18.43,5.14q0-.26,0-0.52a8.2,8.2,0,0,0,2-2.09,8,8,0,0,1-2.31.63A4,4,0,0,0,19.89.94a8.08,8.08,0,0,1-2.56,1,4,4,0,0,0-6.87,3.68A11.44,11.44,0,0,1,2.15,1.38,4,4,0,0,0,3.4,6.76a4,4,0,0,1-1.83-.5s0,0,0,.05a4,4,0,0,0,3.23,4A4,4,0,0,1,3,10.33a4,4,0,0,0,3.77,2.8,8.09,8.09,0,0,1-5,1.73,8.19,8.19,0,0,1-1-.06A11.41,11.41,0,0,0,7,16.61" transform="translate(-0.36 -0.55)"/>
+                                    </svg>Follow us on Twitter
+                                </paper-button>
+                            </a>
+                        </template>
                     </div>
-                </template>
-
-
-            </div>
+                </div>
+            </template>
         </div>
 
     </div>
@@ -413,15 +360,45 @@ The following custom properties and mixins are available for styling:
             type: String, 
             value: "Subscribe" 
         }, 
+
+        /** 
+        * Whether to ask for name or not 
+        * 
+        * @type {Boolean} 
+        */ 
+        noName: { 
+            type: Boolean, 
+            value: false
+        },
+
+        /** 
+        * Whether to use flat buttons
+        * 
+        * @type {Boolean} 
+        */ 
+        flatButtons: { 
+            type: Boolean, 
+            value: false
+        },
       },
 
     subscribe: function(){
-        var date = new Date();
-        var epoch = date.getTime();
-        n = this.$$("#name").validate()
         e = this.$$("#email").validate()
+        n = true;
+        if(!this.noName){
+            n = this.$$("#name").validate()
+        }
         if( n && e ){
-            this.$.doc.ref.push({name: this.$$("#name").value, email: this.$$("#email").value, date: epoch});  
+            var date = new Date();
+            var epoch = date.getTime();
+            var obj = {
+                email: this.$$("#email").value,
+                date: epoch
+            }
+            if(!this.noName){
+                obj.name = this.$$("#name").value;
+            }
+            this.$.doc.ref.push(obj);
             this.subscribed = true;
         }
     },

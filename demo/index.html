@@ -17,54 +17,432 @@
     </style>
   </head>
   <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic holding-fire demo</h3>
+    
+    <div>
+      <h3>Animated holding-fire demo</h3>
       <demo-snippet>
         <template>
         <firebase-app
-            name="holdingdemo"
+            name="animated"
             api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
             auth-domain="convoo-login-demo.firebaseapp.com"
             database-url="https://convoo-login-demo.firebaseio.com">
         </firebase-app>
         <holding-fire
-            app-name="holdingdemo"
+            class="animated"
+            app-name="animated"
             path="/subscribers"
-            class="custom"
             alt="Convoo"
-            logo="images/logo.svg"
-            email="hello@convoo.me"
-            thanks="THANK YOU FOR SUBSCRIBING"
-            twitter = "@convoo"
+            logo="images/lipsum.png"
+            email="hello@example.com"
+            sub-header="Sign up to find out when we launch!"
+            sub-button="Sign up"
+            thanks="Thank you for subscribing!"
+            thanks-header=""
+            twitter = "example"
+            no-name
         >
-        <div class="heading">A place for conversations</div>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <p>Launching soon!</p>
+        <p>A revolutionary new startup. Website coming soon!</p>
+        </holding-fire>
+        <style is="custom-style">
+        holding-fire.animated{
+            --holding-fire-host: {
+                background-image: url(images/background.jpg);
+            }
+
+            --holding-fire-animations: {
+                /*This animation won't register*/
+                @keyframes blank {
+                    0% {padding:0}
+                    100% {padding:0}
+                }
+
+                @keyframes fade {
+                    0% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes zoom {
+                    0% {
+                        transform: scale(1);
+                    }
+                    100% {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            --holding-fire-container: {
+                animation-name: fade;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in-out;
+                animation-duration: 0.8s;
+                animation-fill-mode: forwards;
+            }
+
+            --holding-fire-logo: {
+                animation-name: zoom;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in-out;
+                animation-duration: 0.8s;
+                animation-fill-mode: forwards;
+            }
+
+            --holding-fire-inner-container: {
+                animation-name: fade;
+                animation-iteration-count: 1;
+                animation-timing-function: ease-in-out;
+                animation-duration: 1.2s;
+                animation-fill-mode: forwards;
+            }
+
+        }
+        </style>
+        </template>
+      </demo-snippet>
+    </div>
+
+
+    <div>
+      <h3>Basic holding-fire demo</h3>
+      <demo-snippet>
+        <template>
+        <firebase-app
+            name="basic"
+            api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+            auth-domain="convoo-login-demo.firebaseapp.com"
+            database-url="https://convoo-login-demo.firebaseio.com">
+        </firebase-app>
+        <holding-fire
+            class="basic"
+            app-name="basic"
+            path="/subscribers"
+            alt="Convoo"
+            logo="images/lipsum.png"
+            email="hello@example.com"
+            sub-header="Sign up to find out when we launch!"
+            sub-button="Sign up"
+            thanks="Thank you for subscribing!"
+            thanks-header=""
+            twitter = "example"
+        >
+            <p>A revolutionary new startup. Website coming soon!</p>
         </holding-fire>
         </template>
       </demo-snippet>
     </div>
-    <style>
-        .code.demo-snippet, iron-icon.paper-icon-button {
-        display: none !important;
-        opacity: 0;
-    }
 
-    </style>
-    <style is="custom-style">
-    .heading{
-        font-family: Roboto-BoldCondensed;
-        font-size: 33px;
-        color: #4F79BA;
-        letter-spacing: 0.33px;
-        margin-bottom: 40px;
-    }
-    holding-fire.custom{
-        --holding-fire-background: {
-            /*background: url(images/background.jpg);*/
+
+
+
+
+    <div>
+      <h3>Custom horizontal holding-fire demo</h3>
+      <demo-snippet>
+        <template>
+        <firebase-app
+            name="custom"
+            api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+            auth-domain="convoo-login-demo.firebaseapp.com"
+            database-url="https://convoo-login-demo.firebaseio.com">
+        </firebase-app>
+        <holding-fire
+            class="custom"
+            app-name="custom"
+            path="/subscribers"
+            alt="Convoo"
+            logo="images/lipsum.png"
+            email="hello@example.com"
+            thanks="THANK YOU FOR SUBSCRIBING"
+            twitter = "example"
+        >
+        <div class="heading">Lipsum Title</div>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Launching soon!</p>
+        </holding-fire>
+        <style is="custom-style">
+        holding-fire.custom{
+            --holding-fire-host: {
+                background-image: url(images/background.jpg);
+            }
+
+            --holding-fire-container: {
+                border-radius: 5px;
+            }
+
+            --holding-fire-inner-container: {
+                @apply(--layout-horizontal);
+                @apply(--layout-wrap);
+                margin-bottom: 50px;
+            }
+
+            --holding-fire-content: {
+                text-align: left;
+            }
+
+            --holding-fire-subscribe-container: {
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+            }
+            --holding-fire-thanks-container: {
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+            }
+
+            --holding-fire-subscribe-title: {
+                color: #757C84;
+                text-align: center;
+            }
+            --holding-fire-thanks-title: {
+                color: #757C84;
+                text-align: center;
+            }
+            --holding-fire-subscribe-button: {
+                background: white;
+            }
         }
-    }
-    </style>
+        holding-fire.custom .heading{
+            font-family: Roboto;
+            font-size: 33px;
+            color: #757C84;
+            letter-spacing: 0.33px;
+            margin-bottom: 40px;
+        }
+        </style>
+        </template>
+      </demo-snippet>
+    </div>
+    
+
+    <div>
+      <h3>Custom no container holding-fire demo</h3>
+      <demo-snippet>
+        <template>
+        <firebase-app
+            name="custom-no-container"
+            api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+            auth-domain="convoo-login-demo.firebaseapp.com"
+            database-url="https://convoo-login-demo.firebaseio.com">
+        </firebase-app>
+        <holding-fire
+            class="custom-no-container"
+            app-name="custom-no-container"
+            path="/subscribers"
+            alt="Convoo"
+            logo="images/lipsum.png"
+            email="hello@example.com"
+            thanks="THANK YOU FOR SUBSCRIBING"
+            twitter = "example"
+        >
+        <div class="heading">Lipsum Title</div>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Launching soon!</p>
+        </holding-fire>
+        <style is="custom-style">
+        holding-fire.custom-no-container{
+            --holding-fire-host: {
+                background: #fff;
+            }
+
+            --holding-fire-inner-container: {
+                @apply(--layout-horizontal);
+                @apply(--layout-wrap);
+                margin-bottom: 50px;
+            }
+
+            --holding-fire-content: {
+                text-align: left;
+            }
+
+            --holding-fire-subscribe-container: {
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+            }
+            --holding-fire-thanks-container: {
+                border: 1px solid lightgrey;
+                border-radius: 5px;
+            }
+
+            --holding-fire-subscribe-title: {
+                color: #757C84;
+                text-align: center;
+            }
+            --holding-fire-thanks-title: {
+                color: #757C84;
+                text-align: center;
+            }
+            --holding-fire-subscribe-button: {
+                background: white;
+            }
+        }
+        holding-fire.custom-no-container .heading{
+            font-family: Roboto;
+            font-size: 33px;
+            color: #757C84;
+            letter-spacing: 0.33px;
+            margin-bottom: 40px;
+        }
+        </style>
+        </template>
+      </demo-snippet>
+    </div>
+
+
+
+
+    <div>
+      <h3>Convoo's holding-fire demo</h3>
+      <demo-snippet>
+        <template>
+        <firebase-app
+            name="convoo"
+            api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+            auth-domain="convoo-login-demo.firebaseapp.com"
+            database-url="https://convoo-login-demo.firebaseio.com">
+        </firebase-app>
+        <holding-fire
+            class="convoo"
+            app-name="convoo"
+            path="/subscribers"
+            alt="Convoo"
+            logo="images/logo.svg"
+            email="hello@convoo.me"
+            thanksHeader="THANK YOU"
+            thanks="Thank you for signing up to learn more."
+            twitter="teamconvoo"
+            flat-buttons
+        >
+            <div class="heading">
+                Learn something new from everyone
+            </div>
+            <p>Convoo is an initiative to make learning and sharing even easier and more enjoyable than ever before.</p>
+            <p>We are building a number of progressive web applications and a collection of web components. These will allow us and other developers to quickly create online spaces, where meaningful connections are made and knowledge is freely exchanged.</p>
+            <p>We care deeply about sharing and enjoying the learning process, so much so, everything we do is out in the open on <a href="https://github.com/convoo" target="_blank">Github</a> for all to see, comment on and contribute towards.</p>
+            <p>You can discover more about us and the Convoo initiative from our <a href="https://medium.com/convoo/announcing-convoo-20215fcfe0e0" target="_blank">announcement post</a>. To get notified when we hit key milestones, you can subscribe now.</p>
+        </holding-fire>
+        <style is="custom-style">
+        holding-fire.convoo{
+            --holding-fire-host: {
+                background-image: url(images/convoo-background.jpg);
+            }
+
+            --holding-fire-container: {
+                font-family: 'Roboto';
+                padding: 40px;
+                background: linear-gradient(rgba(243,242,242,0.95) 35%, rgba(236,235,235,0.95) 100%);
+                border-radius: 2px;
+            }
+
+            --holding-fire-logo: {
+                width: 150px;
+                height: 27px;
+                padding-bottom: 40px;
+            }
+
+            --holding-fire-inner-container: {
+                @apply(--layout-horizontal);
+                @apply(--layout-wrap);
+            }
+
+            --holding-fire-content: {
+                font-family: Georgia, Times, 'Times New Roman', serif; 
+                font-size: 1em;
+                color: #000000;
+                letter-spacing: 0.32px;
+                line-height: 1.5em;
+                text-align: left;
+                vertical-align: top;
+            }
+
+            --holding-fire-subscribe-container: {
+                height: 100%;
+                min-width: 340px;
+                text-align: left;
+                background: #FFFFFF;
+                box-shadow: 0 1px 0 0 rgba(0,0,0,0.13);
+                border-radius: 2px;
+            }
+
+            --holding-fire-subscribe-title: {
+                font-size: 14px;
+                color: #757C84;
+                letter-spacing: 0.91px;
+                border-bottom: 1px solid #F0EEEE;
+            }
+
+            --holding-fire-subscribe-form: {
+                padding-top: 20px;
+                padding-left: 35px;
+                padding-right: 40px;
+                padding-bottom: 5px;
+            }
+
+            --holding-fire-input-container-color: gray;
+            --holding-fire-input-container-focus-color: gray;
+            --holding-fire-input-invalid-color: gray;
+            --holding-fire-input-color: gray;
+
+            --holding-fire-input: {
+                text-align: left;
+            }
+
+            --holding-fire-subscribe-button: {
+                width: 100%;
+                height: 44px;
+                background: #FFFFFF;
+                border: 1px solid #6092E0;
+                border-radius: 2px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                font-family: Roboto-Bold;
+                font-size: 14px;
+                color: #6092E0;
+                letter-spacing: 0.05px;
+            }
+
+            --holding-fire-email: {
+                text-align: left;
+            }
+
+            --holding-fire-thanks-container: {
+                height: 100%;
+                min-width: 340px;
+                text-align: left;
+                background: #FFFFFF;
+                box-shadow: 0 1px 0 0 rgba(0,0,0,0.13);
+                border-radius: 2px;
+            }
+
+            --holding-fire-thanks-title: {
+                font-size: 14px;
+                color: #757C84;
+                letter-spacing: 0.91px;
+                border-bottom: 1px solid #F0EEEE;
+            }
+
+            --holding-fire-thanks-section: {
+                padding-top: 20px;
+                padding-left: 35px;
+                padding-right: 40px;
+                padding-bottom: 5px;
+            }
+        }
+        holding-fire.convoo .heading{
+            font-family: "Roboto Condensed";
+            font-size: 28px;
+            color: #4F79BA;
+            letter-spacing: 0.33px;
+            margin-bottom: 40px;
+        }
+        </style>
+        </template>
+      </demo-snippet>
+    </div>
   </body>
 </html>
