@@ -11,6 +11,7 @@ A simple way to create a holding page
 <p align="center">
   <a href="https://webcomponents.org/element/convoo/holding-fire"><img src="https://img.shields.io/badge/webcomponents.org-published-blue.svg"></a>
   <a href="https://gitter.im/convoo/general"><img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg"></a>
+  <a href="http://waffle.io/convoo/roadmap"><img src="https://badge.waffle.io/convoo/holding-fire.svg?label=In%20Progress&title=In%20Progress"></a>
 </p>
 
 ---
@@ -28,10 +29,42 @@ An element that uploads files and provides download url from Firebase Storage. F
 ```html
 <link rel="import" href="/bower_components/holding-fire/holding-fire.html">
 ```
+
+<!--
+```
+<custom-element-demo>
+  <template>
+    <link rel="import" href="holding-fire.html">
+    <link rel="import" href="../polymerfire/firebase-app.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
-<holding-fire app-name="demo" path="users/" logo="images/logo.png" text="Website coming soon! Subscribe to find out when we launch!" email="hello@convoo.me"></holding-fire>
+<firebase-app
+    name="inline"
+    api-key="AIzaSyAhoCXxkY-ffNwA_7L7HIwBVpASYj1btNE"
+    auth-domain="convoo-login-demo.firebaseapp.com"
+    database-url="https://convoo-login-demo.firebaseio.com">
+</firebase-app>
+<holding-fire
+    app-name="inline"
+    path="/subscribers"
+    alt="Convoo"
+    logo="images/lipsum.png"
+    email="hello@example.com"
+    sub-header="Sign up to find out when we launch!"
+    sub-button="Sign up"
+    thanks="Thank you for subscribing!"
+    thanks-header=""
+    twitter = "example"
+>
+    <p>A revolutionary new startup. Website coming soon!</p>
+</holding-fire>
 ```
 
+See the demos by clicking in the sidebar on [webcomponents.org](https://webcomponents.org/element/convoo/holding-fire) for more.
 
 ### Styling
 

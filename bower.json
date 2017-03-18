@@ -1,6 +1,7 @@
 {
   "name": "holding-fire",
   "main": "holding-fire.html",
+  "version": "0.0.1",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
     "iron-image": "PolymerElements/iron-image#^1.2.5",
