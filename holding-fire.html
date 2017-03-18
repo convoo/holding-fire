@@ -86,6 +86,7 @@ The following custom properties and mixins are available for styling:
         }
 
             .logo{
+                max-width: 200px;
                 margin: 20px auto;
                 padding-bottom: 30px;
                 @apply(--holding-fire-logo); 
@@ -237,7 +238,7 @@ The following custom properties and mixins are available for styling:
             <div class="content"> <slot></slot></div>
             <template is="dom-if" if="{{!subscribed}}" class="hidden">
                 <div class="subscribe-container">
-                        <div class="subscribe-title noselect">[[subHeader]]- {{smallScreen}}</div> 
+                        <div class="subscribe-title noselect">[[subHeader]]</div> 
                         <div class="subscribe-form">
                             <template is="dom-if" if="{{!noName}}">
                                 <paper-input label="Name" class="custom" id="name" required error-message="Please enter your name" on-keydown="_catchEnter"></paper-input></br>    
